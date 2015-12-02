@@ -50,7 +50,7 @@ var Explore = React.createClass({
 var Login = React.createClass({
   render: function() {
     return (
-      <p>this is hard</p>
+      <div><img src={'http://cdn8.openculture.com/wp-content/uploads/2013/11/old-books-32.jpg'} alt="" className="background"/></div>
     );
   }
 });
