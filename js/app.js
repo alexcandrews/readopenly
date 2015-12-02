@@ -38,14 +38,14 @@ var App = React.createClass({
 
 var Explore = React.createClass({
   getInitialState: function() {
-    return {value: 'what do you want to learn?'};
+    return {value: ''};
     },
   handleChange: function(event) {
     this.setState({value: event.target.value});
   },
   render: function() {
     var value = this.state.value;
-    return <input type="text" value={value} onChange={this.handleChange} />;}
+    return <input type="text" className="form-control" placeholder="what you want to learn?" value={value} onChange={this.handleChange} />;}
 });
 
 var Login = React.createClass({
