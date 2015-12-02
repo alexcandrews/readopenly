@@ -37,13 +37,15 @@ var App = React.createClass({
 });
 
 var Explore = React.createClass({
+  getInitialState: function() {
+    return {value: 'what do you want to learn?'};
+    },
+  handleChange: function(event) {
+    this.setState({value: event.target.value});
+  },
   render: function() {
-    return (
-      <div className="background-image">
-        <img src="images/old-books.jpg" alt=""/>
-      </div>
-    );
-  }
+    var value = this.state.value;
+    return <input type="text" value={value} onChange={this.handleChange} />;}
 });
 
 var Login = React.createClass({
