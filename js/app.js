@@ -20,8 +20,8 @@ var App = React.createClass({
               </div>
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav">
-                  <li><Link to="page">Page</Link></li>
-                  <li><Link to="hello">Hello</Link></li>
+                  <li><Link to="login">Login</Link></li>
+                  <li><Link to="explore">Explore</Link></li>
                 </ul>
               </div>
             </div>
@@ -33,6 +33,16 @@ var App = React.createClass({
       </div> 
 
    );
+  }
+});
+
+var Explore = React.createClass({
+  render: function() {
+    return (
+      <div className="background-image">
+        <img src="images/old-books.jpg" alt=""/>
+      </div>
+    );
   }
 });
 
@@ -48,7 +58,8 @@ var Login = React.createClass({
 var routes = (
       <Router>
         <Route name="app" path="/" component={App}>
-          <Route name="login" path="/login" handler={Login}/>
+          <Route name="login" path="/login" component={Login}/>
+	  <Route name="explore" path="/explore" component={Explore}/>
 	</Route>
       </Router>
 );
