@@ -3,13 +3,6 @@ webpackJsonp([1],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	// var React = require("react");
-	// var ReactDOM = require("react-dom");
-	// var ReactRouter = require("react-router");
-	
-	// require("../../node_modules/bootstrap/dist/css/bootstrap.min.css");
-	// require("../css/app.css");
-	
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 	var ReactRouter = __webpack_require__(159);
@@ -18,14 +11,15 @@ webpackJsonp([1],{
 	var Route = ReactRouter.Route;
 	var IndexRoute = ReactRouter.IndexRoute;
 	
-	var App = __webpack_require__(210);
-	var Home = __webpack_require__(213);
-	var List = __webpack_require__(214);
-	var Login = __webpack_require__(220);
-	var Register = __webpack_require__(221);
+	var App = __webpack_require__(208);
+	var Home = __webpack_require__(211);
+	var List = __webpack_require__(212);
+	var Explore = __webpack_require__(218);
+	var Login = __webpack_require__(219);
+	var Register = __webpack_require__(220);
 	
-	__webpack_require__(222);
-	__webpack_require__(231);
+	__webpack_require__(221);
+	__webpack_require__(230);
 	
 	var routes = React.createElement(
 	  Router,
@@ -56,14 +50,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 210:
+/***/ 208:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	var History = ReactRouter.History;
 	
-	var auth = __webpack_require__(211);
+	var auth = __webpack_require__(209);
 	
 	// Top-level component for the app
 	var App = React.createClass({
@@ -134,7 +128,7 @@ webpackJsonp([1],{
 	            { className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1" },
 	            this.state.loggedIn ? React.createElement(
 	              "ul",
-	              { className: "nav navbar-nav" },
+	              { className: "nav navbar-nav navbar-right" },
 	              React.createElement(
 	                "li",
 	                null,
@@ -188,10 +182,10 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 211:
+/***/ 209:
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(212);
+	var $ = __webpack_require__(210);
 	
 	// authentication object
 	var auth = {
@@ -284,7 +278,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 213:
+/***/ 211:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -292,45 +286,55 @@ webpackJsonp([1],{
 	
 	var Link = ReactRouter.Link;
 	
-	// Home page, which shows Login and Register buttons
 	var Home = React.createClass({
 	  displayName: "Home",
 	
+	  // getInitialState: function() {
+	  // return {value: ''};
+	  // },
+	  // handleChange: function(event) {
+	  // this.setState({value: event.target.value});
+	  // },
 	  render: function () {
-	    return React.createElement(
-	      "p",
-	      null,
-	      React.createElement(
-	        Link,
-	        { className: "btn btn-default", to: "login" },
-	        "Login"
-	      ),
-	      " or ",
-	      React.createElement(
-	        Link,
-	        { className: "btn btn-warning", to: "register" },
-	        "Register"
-	      )
-	    );
+	    // var value = this.state.value;
+	    return React.createElement("input", { type: "text", className: "form-control", placeholder: "what you want to learn?", value: value, onChange: this.handleChange });
 	  }
 	});
+	
+	// TODO: add this in somewhere...
+	// var Login = React.createClass({
+	// render: function() {
+	// return (
+	// <div><img src={'http://cdn8.openculture.com/wp-content/uploads/2013/11/old-books-32.jpg'} alt="" className="background-image"/></div>);
+	// }});
+	
+	// Home page, which shows Login and Register buttons
+	// var Home = React.createClass({
+	// render: function() {
+	// return (
+	// <p>
+	// <Link className="btn btn-default" to="login">Login</Link> or <Link className="btn btn-warning" to="register">Register</Link>
+	// </p>
+	// );
+	// }
+	// });
 	
 	module.exports = Home;
 
 /***/ },
 
-/***/ 214:
+/***/ 212:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	var ListHeader = __webpack_require__(215);
-	var ListEntry = __webpack_require__(217);
-	var ListItems = __webpack_require__(218);
+	var ListHeader = __webpack_require__(213);
+	var ListEntry = __webpack_require__(215);
+	var ListItems = __webpack_require__(216);
 	
-	var api = __webpack_require__(216);
-	var auth = __webpack_require__(211);
+	var api = __webpack_require__(214);
+	var auth = __webpack_require__(209);
 	
 	// List page, shows the todo list of items
 	var List = React.createClass({
@@ -393,12 +397,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 215:
+/***/ 213:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	
-	var api = __webpack_require__(216);
+	var api = __webpack_require__(214);
 	
 	// List header, which shows who the list is for, the number of items in the list, and a button to clear completed items
 	var ListHeader = React.createClass({
@@ -486,10 +490,10 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 216:
+/***/ 214:
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(212);
+	var $ = __webpack_require__(210);
 	
 	// API object
 	var api = {
@@ -582,12 +586,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 217:
+/***/ 215:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	
-	var api = __webpack_require__(216);
+	var api = __webpack_require__(214);
 	
 	// List entry component, handles adding new items to the list
 	var ListEntry = React.createClass({
@@ -625,13 +629,13 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 218:
+/***/ 216:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	var Item = __webpack_require__(219);
+	var Item = __webpack_require__(217);
 	
 	// List items component, shows the list of items
 	var ListItems = React.createClass({
@@ -673,12 +677,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 219:
+/***/ 217:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	
-	var api = __webpack_require__(216);
+	var api = __webpack_require__(214);
 	
 	// Item shown in the todo list
 	var Item = React.createClass({
@@ -780,14 +784,37 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 220:
+/***/ 218:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(159);
+	
+	var Link = ReactRouter.Link;
+	
+	// Home page, which shows Login and Register buttons
+	// var Home = React.createClass({
+	// render: function() {
+	// return (
+	// <p>
+	// <Link className="btn btn-default" to="login">Login</Link> or <Link className="btn btn-warning" to="register">Register</Link>
+	// </p>
+	// );
+	// }
+	// });
+	
+	module.exports = Explore;
+
+/***/ },
+
+/***/ 219:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	var History = ReactRouter.History;
 	
-	var auth = __webpack_require__(211);
+	var auth = __webpack_require__(209);
 	
 	// Login page, shows the login form and redirects to the list if login is successful
 	var Login = React.createClass({
@@ -854,14 +881,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 221:
+/***/ 220:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	var History = ReactRouter.History;
 	
-	var auth = __webpack_require__(211);
+	var auth = __webpack_require__(209);
 	
 	// Register page, shows the registration form and redirects to the list if login is successful
 	var Register = React.createClass({
@@ -930,14 +957,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 222:
+/***/ 221:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 231:
+/***/ 230:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
@@ -945,4 +972,3 @@ webpackJsonp([1],{
 /***/ }
 
 });
-//# sourceMappingURL=app.js.map
