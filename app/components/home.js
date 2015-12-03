@@ -3,15 +3,24 @@ var ReactRouter = require("react-router");
 
 var Link = ReactRouter.Link;
 
-// Home page, which shows Login and Register buttons
 var Home = React.createClass({
+  getInitialState: function() {
+    return {value: ''};
+    },
+  handleChange: function(event) {
+    this.setState({value: event.target.value});
+  },
+
   render: function() {
-    return (
-      <p>
-        <Link className="btn btn-default" to="login">Login</Link> or <Link className="btn btn-warning" to="register">Register</Link>
-      </p>
-    );
-  }
+    var value = this.state.value;
+    return <input type="text" className="form-control" placeholder="what you want to learn?" value={value} onChange={this.handleChange} />;}
 });
+
+// TODO: add this in somewhere...
+// var Login = React.createClass({
+    // render: function() {
+      // return (
+// <div><img src={'http://cdn8.openculture.com/wp-content/uploads/2013/11/old-books-32.jpg'} alt="" className="background-image"/></div>);
+// }});
 
 module.exports = Home;

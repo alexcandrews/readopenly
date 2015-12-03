@@ -13,13 +13,15 @@ var App = React.createClass({
   getInitialState: function() {
     return {
       // the user is logged in
-      loggedIn: auth.loggedIn()
+      // loggedIn: auth.loggedIn()
+      loggedIn: true
     };
   },
 
   // callback when user is logged in
   setStateOnAuth: function(loggedIn) {
-    this.setState({loggedIn:loggedIn});
+    // this.setState({loggedIn:loggedIn});
+    this.setState(true);
   },
 
   // when the component loads, setup the callback
@@ -47,7 +49,7 @@ var App = React.createClass({
 		<span className="icon-bar"></span>
 		<span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="/">List-o-matic</a>
+              <a className="navbar-brand" href="/">hello</a>
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               {this.state.loggedIn ? (
