@@ -16,6 +16,7 @@ module.exports = {
     new ExtractTextPlugin("./css/styles.css"),
     new CommonsChunkPlugin("vendor", "./js/vendor.js", Infinity),
   ],
+  // watch: true,
   devtool: 'source-map',
   module: {
     loaders: [

@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var ghPages = require('gulp-gh-pages');
-var webpack = require('gulp-webpack');
+var webpack = require('webpack-stream');
 
 gulp.task('dist', function() {
   return gulp.src('./app/components/main.js')
@@ -13,3 +13,5 @@ gulp.task('deploy', ['dist'], function() {
   return gulp.src('./public/**/*')
     .pipe(ghPages());
 });
+
+gulp.task('default', ['dist']);
