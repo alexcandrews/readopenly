@@ -3,6 +3,13 @@ webpackJsonp([1],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
+	// var React = require("react");
+	// var ReactDOM = require("react-dom");
+	// var ReactRouter = require("react-router");
+	
+	// require("../../node_modules/bootstrap/dist/css/bootstrap.min.css");
+	// require("../css/app.css");
+	
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 	var ReactRouter = __webpack_require__(159);
@@ -14,12 +21,12 @@ webpackJsonp([1],{
 	var App = __webpack_require__(208);
 	var Home = __webpack_require__(211);
 	var List = __webpack_require__(212);
-	var Explore = __webpack_require__(218);
-	var Login = __webpack_require__(219);
-	var Register = __webpack_require__(220);
+	var Login = __webpack_require__(218);
+	// var Explore = require("./explore.js");
+	var Register = __webpack_require__(219);
 	
-	__webpack_require__(221);
-	__webpack_require__(230);
+	__webpack_require__(220);
+	__webpack_require__(229);
 	
 	var routes = React.createElement(
 	  Router,
@@ -28,6 +35,8 @@ webpackJsonp([1],{
 	    Route,
 	    { name: "app", path: "/", component: App },
 	    React.createElement(IndexRoute, { component: Home }),
+	    "// ",
+	    React.createElement(Route, { name: "explore", path: "/explore", component: Explore }),
 	    React.createElement(Route, { name: "list", path: "/list", component: List }),
 	    React.createElement(Route, { name: "active", path: "/list/active", component: List }),
 	    React.createElement(Route, { name: "completed", path: "/list/completed", component: List }),
@@ -128,7 +137,7 @@ webpackJsonp([1],{
 	            { className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1" },
 	            this.state.loggedIn ? React.createElement(
 	              "ul",
-	              { className: "nav navbar-nav navbar-right" },
+	              { className: "nav navbar-nav" },
 	              React.createElement(
 	                "li",
 	                null,
@@ -286,38 +295,28 @@ webpackJsonp([1],{
 	
 	var Link = ReactRouter.Link;
 	
+	// Home page, which shows Login and Register buttons
 	var Home = React.createClass({
 	  displayName: "Home",
 	
-	  // getInitialState: function() {
-	  // return {value: ''};
-	  // },
-	  // handleChange: function(event) {
-	  // this.setState({value: event.target.value});
-	  // },
 	  render: function () {
-	    // var value = this.state.value;
-	    return React.createElement("input", { type: "text", className: "form-control", placeholder: "what you want to learn?", value: value, onChange: this.handleChange });
+	    return React.createElement(
+	      "p",
+	      null,
+	      React.createElement(
+	        Link,
+	        { className: "btn btn-default", to: "login" },
+	        "Login"
+	      ),
+	      " or ",
+	      React.createElement(
+	        Link,
+	        { className: "btn btn-warning", to: "register" },
+	        "Register"
+	      )
+	    );
 	  }
 	});
-	
-	// TODO: add this in somewhere...
-	// var Login = React.createClass({
-	// render: function() {
-	// return (
-	// <div><img src={'http://cdn8.openculture.com/wp-content/uploads/2013/11/old-books-32.jpg'} alt="" className="background-image"/></div>);
-	// }});
-	
-	// Home page, which shows Login and Register buttons
-	// var Home = React.createClass({
-	// render: function() {
-	// return (
-	// <p>
-	// <Link className="btn btn-default" to="login">Login</Link> or <Link className="btn btn-warning" to="register">Register</Link>
-	// </p>
-	// );
-	// }
-	// });
 	
 	module.exports = Home;
 
@@ -789,29 +788,6 @@ webpackJsonp([1],{
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
-	
-	var Link = ReactRouter.Link;
-	
-	// Home page, which shows Login and Register buttons
-	// var Home = React.createClass({
-	// render: function() {
-	// return (
-	// <p>
-	// <Link className="btn btn-default" to="login">Login</Link> or <Link className="btn btn-warning" to="register">Register</Link>
-	// </p>
-	// );
-	// }
-	// });
-	
-	module.exports = Explore;
-
-/***/ },
-
-/***/ 219:
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(159);
 	var History = ReactRouter.History;
 	
 	var auth = __webpack_require__(209);
@@ -881,7 +857,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 220:
+/***/ 219:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -957,14 +933,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 221:
+/***/ 220:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 230:
+/***/ 229:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
