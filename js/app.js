@@ -673,7 +673,6 @@ webpackJsonp([1],{
 	  contextTypes: {
 	    location: React.PropTypes.object
 	  },
-	
 	  // render the list of items
 	  render: function () {
 	    // get list of items to show, using the path to the current page
@@ -697,11 +696,7 @@ webpackJsonp([1],{
 	    return React.createElement(
 	      "ul",
 	      { id: "todo-list" },
-	      React.createElement(
-	        "a",
-	        { href: "www.google.com" },
-	        "ITEM"
-	      )
+	      list
 	    );
 	  }
 	});
