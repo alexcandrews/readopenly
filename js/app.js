@@ -14,7 +14,7 @@ webpackJsonp([1],{
 	var App = __webpack_require__(210);
 	var Home = __webpack_require__(213);
 	var List = __webpack_require__(215);
-	var LibraryItemList = __webpack_require__(221);
+	var LibraryItemList = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./libraryitemlist.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	var LibraryPage = __webpack_require__(222);
 	var Login = __webpack_require__(223);
 	var Register = __webpack_require__(224);
@@ -811,78 +811,6 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 221:
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(159);
-	
-	var LibraryHeader = __webpack_require__(216);
-	var ListItems = __webpack_require__(219);
-	
-	var api = __webpack_require__(217);
-	var auth = __webpack_require__(211);
-	
-	// Library list page, show items checked out
-	var LibraryItemList = React.createClass({
-	    displayName: "LibraryItemList",
-	
-	    // context so the component can access the router
-	    contextTypes: {
-	        location: React.PropTypes.object
-	    },
-	
-	    // initial state
-	    getInitialState: function () {
-	        return {
-	            // list of items "checked out"
-	            items: []
-	        };
-	    },
-	
-	    // when the component loads, get the list items
-	    componentDidMount: function () {
-	        api.getItems(this.listSet);
-	    },
-	
-	    // reload the list of items
-	    reload: function () {
-	        api.getItems(this.listSet);
-	    },
-	
-	    // callback for getting the list of items, sets the list state
-	    listSet: function (status, data) {
-	        if (status) {
-	            // set the state for the list of items
-	            this.setState({
-	                items: data.items
-	            });
-	        } else {
-	            // if the API call fails, redirect to the login page
-	            this.context.router.transitionTo('/login');
-	        }
-	    },
-	
-	    // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
-	    render: function () {
-	        var name = auth.getName();
-	        return React.createElement(
-	            "section",
-	            { id: "todoapp" },
-	            React.createElement(LibraryHeader, { name: name, items: this.state.items, reload: this.reload }),
-	            React.createElement(
-	                "section",
-	                { id: "main" },
-	                React.createElement(ListItems, { items: this.state.items, reload: this.reload })
-	            )
-	        );
-	    }
-	});
-	
-	module.exports = LibraryItemList;
-
-/***/ },
-
 /***/ 222:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -890,7 +818,7 @@ webpackJsonp([1],{
 	var ReactRouter = __webpack_require__(159);
 	
 	var LibraryHeader = __webpack_require__(216);
-	var LibraryItemList = __webpack_require__(221);
+	var LibraryItemList = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./libraryitemlist.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var LibraryPage = React.createClass({
 	    displayName: "LibraryPage",
