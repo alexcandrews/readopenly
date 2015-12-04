@@ -137,35 +137,8 @@ webpackJsonp([1],{
 	                null,
 	                React.createElement(
 	                  "a",
-	                  { href: "#/list" },
-	                  "All"
-	                )
-	              ),
-	              React.createElement(
-	                "li",
-	                null,
-	                React.createElement(
-	                  "a",
-	                  { href: "#/list/active" },
-	                  "Active"
-	                )
-	              ),
-	              React.createElement(
-	                "li",
-	                null,
-	                React.createElement(
-	                  "a",
-	                  { href: "#/list/completed" },
-	                  "Completed"
-	                )
-	              ),
-	              React.createElement(
-	                "li",
-	                null,
-	                React.createElement(
-	                  "a",
-	                  { href: "#", onClick: this.logout },
-	                  "Logout"
+	                  { href: "#/libraryitemlist" },
+	                  "Library"
 	                )
 	              )
 	            ) : React.createElement(
@@ -207,6 +180,13 @@ webpackJsonp([1],{
 	});
 	
 	module.exports = App;
+	
+	/*
+	 <li><a href="#/list">All</a></li>
+	 <li><a href="#/list/active">Active</a></li>
+	 <li><a href="#/list/completed">Completed</a></li>
+	 <li><a href="#" onClick={this.logout}>Logout</a></li>
+	 */
 
 /***/ },
 
