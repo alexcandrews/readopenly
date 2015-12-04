@@ -418,7 +418,7 @@ webpackJsonp([1],{
 	    return React.createElement(
 	      "section",
 	      { id: "todoapp" },
-	      React.createElement(LibraryTitle, { name: name, items: this.state.items, reload: this.reload }),
+	      React.createElement(LibraryHeader, { name: name, items: this.state.items, reload: this.reload }),
 	      React.createElement(
 	        "section",
 	        { id: "main" },
@@ -441,8 +441,8 @@ webpackJsonp([1],{
 	var api = __webpack_require__(217);
 	
 	// List header, which shows who the list is for, the number of items in the list, and a button to clear completed items
-	var LibraryTitle = React.createClass({
-	    displayName: "LibraryTitle",
+	var LibraryHeader = React.createClass({
+	    displayName: "LibraryHeader",
 	
 	    // handle the clear completed button submit
 	    clearCompleted: function (event) {
@@ -513,7 +513,7 @@ webpackJsonp([1],{
 	    }
 	});
 	
-	module.exports = LibraryTitle;
+	module.exports = LibraryHeader;
 
 /***/ },
 
@@ -817,7 +817,7 @@ webpackJsonp([1],{
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	var LibraryTitle = __webpack_require__(216);
+	var LibraryHeader = __webpack_require__(216);
 	var ListItems = __webpack_require__(219);
 	
 	var api = __webpack_require__(217);
@@ -869,7 +869,7 @@ webpackJsonp([1],{
 	        return React.createElement(
 	            "section",
 	            { id: "todoapp" },
-	            React.createElement(LibraryTitle, { name: name, items: this.state.items, reload: this.reload }),
+	            React.createElement(LibraryHeader, { name: name, items: this.state.items, reload: this.reload }),
 	            React.createElement(
 	                "section",
 	                { id: "main" },
@@ -942,7 +942,7 @@ webpackJsonp([1],{
 	        return React.createElement(
 	            "section",
 	            { id: "todoapp" },
-	            React.createElement(LibraryTitle, { name: name, items: this.state.items, reload: this.reload }),
+	            React.createElement(LibraryHeader, { name: name, items: this.state.items, reload: this.reload }),
 	            React.createElement(
 	                "section",
 	                { id: "main" },
