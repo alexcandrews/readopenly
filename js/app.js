@@ -13,12 +13,12 @@ webpackJsonp([1],{
 	
 	var App = __webpack_require__(210);
 	var Home = __webpack_require__(213);
-	var List = __webpack_require__(214);
-	var Login = __webpack_require__(220);
-	var Register = __webpack_require__(221);
+	var List = __webpack_require__(215);
+	var Login = __webpack_require__(221);
+	var Register = __webpack_require__(222);
 	
-	__webpack_require__(222);
-	__webpack_require__(231);
+	__webpack_require__(223);
+	__webpack_require__(232);
 	
 	var routes = React.createElement(
 	  Router,
@@ -310,26 +310,35 @@ webpackJsonp([1],{
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
+	var SearchBar = __webpack_require__(214);
 	
 	var Link = ReactRouter.Link;
 	
 	var Home = React.createClass({
 	  displayName: "Home",
 	
-	  getInitialState: function () {
-	    return { value: '' };
+	  /*
+	  getInitialState: function() {
+	    return {value: ''};
+	    },
+	  handleChange: function(event) {
+	    this.setState({value: event.target.value});
 	  },
-	  handleChange: function (event) {
-	    this.setState({ value: event.target.value });
-	  },
-	
-	  render: function () {
+	   render: function() {
 	    var value = this.state.value;
+	    return (
+	        <div>
+	          <input type="text" className="form-control" placeholder="what do you want to learn?" value={value} onChange={this.handleChange} />
+	          <input className="btn btn-primary" type="submit" value="?" />
+	        </div>
+	    );
+	  }
+	  */
+	  render: function () {
 	    return React.createElement(
 	      "div",
 	      null,
-	      React.createElement("input", { type: "text", className: "form-control", placeholder: "what do you want to learn?", value: value, onChange: this.handleChange }),
-	      React.createElement("input", { className: "btn btn-primary", type: "submit", value: "search" })
+	      React.createElement(SearchBar, null)
 	    );
 	  }
 	});
@@ -344,12 +353,43 @@ webpackJsonp([1],{
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	//var ListHeader = require("./listheader.js");
-	var LibraryTitle = __webpack_require__(215);
-	var ListEntry = __webpack_require__(217);
-	var ListItems = __webpack_require__(218);
+	var SearchBar = React.createClass({
+	    displayName: "SearchBar",
 	
-	var api = __webpack_require__(216);
+	    getInitialState: function () {
+	        return { value: '' };
+	    },
+	    handleChange: function (event) {
+	        this.setState({ value: event.target.value });
+	    },
+	
+	    render: function () {
+	        var value = this.state.value;
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement("input", { type: "text", className: "form-control", placeholder: "what do you want to learn?", value: value, onChange: this.handleChange }),
+	            React.createElement("input", { className: "btn btn-primary", type: "submit", value: "?" })
+	        );
+	    }
+	});
+	
+	module.exports = SearchBar;
+
+/***/ },
+
+/***/ 215:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(159);
+	
+	//var ListHeader = require("./listheader.js");
+	var LibraryTitle = __webpack_require__(216);
+	var ListEntry = __webpack_require__(218);
+	var ListItems = __webpack_require__(219);
+	
+	var api = __webpack_require__(217);
 	var auth = __webpack_require__(211);
 	
 	// List page, shows the todo list of items
@@ -413,12 +453,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 215:
+/***/ 216:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	
-	var api = __webpack_require__(216);
+	var api = __webpack_require__(217);
 	
 	// List header, which shows who the list is for, the number of items in the list, and a button to clear completed items
 	var LibraryTitle = React.createClass({
@@ -497,7 +537,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 216:
+/***/ 217:
 /***/ function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(212);
@@ -593,12 +633,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 217:
+/***/ 218:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	
-	var api = __webpack_require__(216);
+	var api = __webpack_require__(217);
 	
 	// List entry component, handles adding new items to the list
 	var ListEntry = React.createClass({
@@ -636,13 +676,13 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 218:
+/***/ 219:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	var Item = __webpack_require__(219);
+	var Item = __webpack_require__(220);
 	
 	// List items component, shows the list of items
 	var ListItems = React.createClass({
@@ -684,12 +724,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 219:
+/***/ 220:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	
-	var api = __webpack_require__(216);
+	var api = __webpack_require__(217);
 	
 	// Item shown in the todo list
 	var Item = React.createClass({
@@ -791,7 +831,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 220:
+/***/ 221:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -865,7 +905,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 221:
+/***/ 222:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -941,14 +981,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 222:
+/***/ 223:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 231:
+/***/ 232:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
