@@ -13,15 +13,16 @@ var App = React.createClass({
   getInitialState: function() {
     return {
       // the user is logged in
-      // loggedIn: auth.loggedIn()
-      loggedIn: true
+       loggedIn: auth.loggedIn()
+      //loggedIn: true
+      //loggedIn: false
     };
   },
 
   // callback when user is logged in
   setStateOnAuth: function(loggedIn) {
-    // this.setState({loggedIn:loggedIn});
-    this.setState(true);
+    this.setState({loggedIn:loggedIn});
+//    this.setState(true);
   },
 
   // when the component loads, setup the callback
@@ -59,7 +60,16 @@ var App = React.createClass({
                    <li><a href="#/list/completed">Completed</a></li>
                    <li><a href="#" onClick={this.logout}>Logout</a></li>
                  </ul>
-               ) : (<div></div>)}
+                ) :
+	            (
+                  <div>
+		            <ul className="nav navbar-nav navbar-right">
+		              <li><a href="#/login">Login</a></li>
+                      <li><a href="#/register">Register</a></li>
+                     </ul>
+		          </div>
+	            )
+              }
             </div>
           </div>
         </nav>

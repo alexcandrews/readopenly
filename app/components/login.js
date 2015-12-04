@@ -49,7 +49,7 @@ var Login = React.createClass({
           <input type="password" placeholder="Password" ref="password"/>
           <input className="btn btn-warning" type="submit" value="Login" />
           {this.state.error ? (
-             <div className="alert">Invalid username or password.</div>
+             <div className="alert">Invalid username or password ya filthy animal.</div>
            ) : null}
         </form>
       </div>
