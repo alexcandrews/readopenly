@@ -345,10 +345,10 @@ webpackJsonp([1],{
 	        return React.createElement(
 	            "div",
 	            null,
-	            React.createElement("input", { type: "text", className: "form-control", placeholder: "what do you want to learn?", value: value, onChange: this.handleChange }),
 	            React.createElement(
 	                "center",
 	                null,
+	                React.createElement("input", { type: "text", className: "form-control col-xs-2", placeholder: "what do you want to learn?", value: value, onChange: this.handleChange }),
 	                React.createElement("input", { className: "btn btn-primary", type: "submit", value: "?" })
 	            )
 	        );
