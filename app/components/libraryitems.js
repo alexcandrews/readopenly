@@ -4,7 +4,7 @@ var ReactRouter = require("react-router");
 var Item = require("./item.js");
 
 // List items component, shows the list of items
-var ListItems = React.createClass({
+var LibraryItems = React.createClass({
     // context so the component can access the router
     contextTypes: {
         location: React.PropTypes.object
@@ -39,4 +39,4 @@ var ListItems = React.createClass({
     }
 });
 
-module.exports = ListItems;
+module.exports = LibraryItems;
