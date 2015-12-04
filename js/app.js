@@ -982,17 +982,18 @@ webpackJsonp([1],{
 	
 	    // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
 	    render: function () {
+	        return React.createElement(LibraryHeader, null);
+	        /*
 	        var name = auth.getName();
-	        return React.createElement(
-	            "section",
-	            { id: "todoapp" },
-	            React.createElement(LibraryHeader, { name: name, items: this.state.items, reload: this.reload }),
-	            React.createElement(
-	                "section",
-	                { id: "main" },
-	                React.createElement(ListItems, { items: this.state.items, reload: this.reload })
-	            )
+	         return(
+	            <section id="todoapp">
+	                <LibraryHeader name={name} items={this.state.items} reload={this.reload} />
+	                <section id="main">
+	                    <ListItems items={this.state.items} reload={this.reload}/>
+	                </section>
+	            </section>
 	        );
+	        */
 	    }
 	});
 	
