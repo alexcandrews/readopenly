@@ -982,7 +982,11 @@ webpackJsonp([1],{
 	
 	    // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
 	    render: function () {
-	        return React.createElement(LibraryHeader, null);
+	        return React.createElement(
+	            "p",
+	            null,
+	            "Hello"
+	        );
 	        /*
 	        var name = auth.getName();
 	         return(
