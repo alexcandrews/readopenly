@@ -14,12 +14,12 @@ webpackJsonp([1],{
 	var App = __webpack_require__(210);
 	var Home = __webpack_require__(213);
 	var List = __webpack_require__(215);
-	var LibraryItemList = __webpack_require__(221);
-	var Login = __webpack_require__(222);
-	var Register = __webpack_require__(223);
+	var LibraryItemList = __webpack_require__(220);
+	var Login = __webpack_require__(221);
+	var Register = __webpack_require__(222);
 	
-	__webpack_require__(224);
-	__webpack_require__(233);
+	__webpack_require__(223);
+	__webpack_require__(232);
 	
 	var routes = React.createElement(
 	  Router,
@@ -30,14 +30,18 @@ webpackJsonp([1],{
 	    React.createElement(IndexRoute, { component: Home }),
 	    React.createElement(Route, { name: "libraryitemlist", path: "/libraryitemlist", component: LibraryItemList }),
 	    React.createElement(Route, { name: "list", path: "/list", component: List }),
-	    React.createElement(Route, { name: "active", path: "/list/active", component: LibraryItemList }),
-	    React.createElement(Route, { name: "completed", path: "/list/completed", component: LibraryItemList }),
 	    React.createElement(Route, { name: "login", path: "/login", component: Login }),
 	    React.createElement(Route, { name: "register", path: "/register", component: Register })
 	  )
 	);
 	
 	ReactDOM.render(routes, document.getElementById('content'));
+	
+	/*
+	Code i removed:
+	 <Route name="active" path="/list/active" component={LibraryItemList} />
+	 <Route name="completed" path="/list/completed" component={LibraryItemList} />
+	 */
 
 /***/ },
 
@@ -72,15 +76,12 @@ webpackJsonp([1],{
 	    return {
 	      // the user is logged in
 	      loggedIn: auth.loggedIn()
-	      //loggedIn: true
-	      //loggedIn: false
 	    };
 	  },
 	
 	  // callback when user is logged in
 	  setStateOnAuth: function (loggedIn) {
 	    this.setState({ loggedIn: loggedIn });
-	    //    this.setState(true);
 	  },
 	
 	  // when the component loads, setup the callback
@@ -141,6 +142,15 @@ webpackJsonp([1],{
 	                  { href: "#/libraryitemlist" },
 	                  "Library"
 	                )
+	              ),
+	              React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                  "a",
+	                  { href: "#", onClick: this.logout },
+	                  "Logout"
+	                )
 	              )
 	            ) : React.createElement(
 	              "div",
@@ -186,7 +196,7 @@ webpackJsonp([1],{
 	 <li><a href="#/list">All</a></li>
 	 <li><a href="#/list/active">Active</a></li>
 	 <li><a href="#/list/completed">Completed</a></li>
-	 <li><a href="#" onClick={this.logout}>Logout</a></li>
+	
 	 */
 
 /***/ },
@@ -353,10 +363,9 @@ webpackJsonp([1],{
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	//var ListHeader = require("./listheader.js");
-	var LibraryTitle = __webpack_require__(216);
-	var ListEntry = __webpack_require__(218);
-	var ListItems = __webpack_require__(219);
+	var LibraryTitle = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./librarytitle.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var ListEntry = __webpack_require__(216);
+	var ListItems = __webpack_require__(218);
 	
 	var api = __webpack_require__(217);
 	var auth = __webpack_require__(211);
@@ -429,80 +438,39 @@ webpackJsonp([1],{
 	
 	var api = __webpack_require__(217);
 	
-	// List header, which shows who the list is for, the number of items in the list, and a button to clear completed items
-	var LibraryTitle = React.createClass({
-	    displayName: "LibraryTitle",
+	// List entry component, handles adding new items to the list
+	var ListEntry = React.createClass({
+	  displayName: "ListEntry",
 	
-	    // handle the clear completed button submit
-	    clearCompleted: function (event) {
-	        // loop through the items, and delete any that are complete
-	        this.props.items.forEach(function (item) {
-	            if (item.completed) {
-	                api.deleteItem(item, null);
-	            }
-	        });
-	        // XXX race condition because the API call to delete is async
-	        // reload the list
-	        this.props.reload();
-	    },
-	
-	    // render the list header
-	    render: function () {
-	        // true if there are any completed items
-	        var completed = this.props.items.filter(function (item) {
-	            return item.completed;
-	        });
-	        return React.createElement(
-	            "header",
-	            { id: "header" },
-	            React.createElement(
-	                "div",
-	                { className: "row" },
-	                React.createElement(
-	                    "div",
-	                    { className: "col-md-6" },
-	                    React.createElement(
-	                        "p",
-	                        null,
-	                        React.createElement(
-	                            "i",
-	                            null,
-	                            this.props.name,
-	                            "'s custom library"
-	                        )
-	                    ),
-	                    React.createElement(
-	                        "p",
-	                        null,
-	                        React.createElement(
-	                            "span",
-	                            { id: "list-count", className: "label label-default" },
-	                            React.createElement(
-	                                "strong",
-	                                null,
-	                                this.props.items.length
-	                            ),
-	                            " item(s)"
-	                        )
-	                    )
-	                ),
-	                completed.length > 0 ? React.createElement(
-	                    "div",
-	                    { className: "col-md-6 right" },
-	                    React.createElement(
-	                        "button",
-	                        { className: "btn btn-warning btn-md", id: "clear-completed", onClick: this.clearCompleted },
-	                        "Remove selected items (",
-	                        completed.length,
-	                        ")"
-	                    )
-	                ) : null
-	            )
-	        );
+	  // handles submit event for adding a new item
+	  addItem: function (event) {
+	    // prevent default browser submit
+	    event.preventDefault();
+	    // get data from form
+	    var title = this.refs.title.value;
+	    if (!title) {
+	      return;
 	    }
+	    // call API to add item, and reload once added
+	    api.addItem(title, this.props.reload);
+	    this.refs.title.value = '';
+	  },
+	
+	  // render the item entry area
+	  render: function () {
+	    return React.createElement(
+	      "header",
+	      { id: "input" },
+	      React.createElement(
+	        "form",
+	        { id: "item-form", name: "itemForm", onSubmit: this.addItem },
+	        React.createElement("input", { type: "text", id: "new-item", ref: "title", placeholder: "Enter a new item", autoFocus: true })
+	      )
+	    );
+	  }
 	});
 	
-	module.exports = LibraryTitle;
+	module.exports = ListEntry;
 
 /***/ },
 
@@ -606,52 +574,9 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	
-	var api = __webpack_require__(217);
-	
-	// List entry component, handles adding new items to the list
-	var ListEntry = React.createClass({
-	  displayName: "ListEntry",
-	
-	  // handles submit event for adding a new item
-	  addItem: function (event) {
-	    // prevent default browser submit
-	    event.preventDefault();
-	    // get data from form
-	    var title = this.refs.title.value;
-	    if (!title) {
-	      return;
-	    }
-	    // call API to add item, and reload once added
-	    api.addItem(title, this.props.reload);
-	    this.refs.title.value = '';
-	  },
-	
-	  // render the item entry area
-	  render: function () {
-	    return React.createElement(
-	      "header",
-	      { id: "input" },
-	      React.createElement(
-	        "form",
-	        { id: "item-form", name: "itemForm", onSubmit: this.addItem },
-	        React.createElement("input", { type: "text", id: "new-item", ref: "title", placeholder: "Enter a new item", autoFocus: true })
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = ListEntry;
-
-/***/ },
-
-/***/ 219:
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	var Item = __webpack_require__(220);
+	var Item = __webpack_require__(219);
 	
 	// List items component, shows the list of items
 	var ListItems = React.createClass({
@@ -693,7 +618,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 220:
+/***/ 219:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -800,14 +725,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 221:
+/***/ 220:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	var LibraryTitle = __webpack_require__(216);
-	var ListItems = __webpack_require__(219);
+	var LibraryTitle = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./librarytitle.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var ListItems = __webpack_require__(218);
 	
 	var api = __webpack_require__(217);
 	var auth = __webpack_require__(211);
@@ -872,7 +797,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 222:
+/***/ 221:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -946,7 +871,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 223:
+/***/ 222:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -1022,14 +947,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 224:
+/***/ 223:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 233:
+/***/ 232:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
