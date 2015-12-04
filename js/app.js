@@ -11,9 +11,9 @@ webpackJsonp([1],{
 	var Route = ReactRouter.Route;
 	var IndexRoute = ReactRouter.IndexRoute;
 	
-	var App = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./app.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	var Home = __webpack_require__(211);
-	var List = __webpack_require__(212);
+	var App = __webpack_require__(210);
+	var Home = __webpack_require__(213);
+	var List = __webpack_require__(214);
 	var Login = __webpack_require__(220);
 	var Register = __webpack_require__(221);
 	
@@ -49,7 +49,263 @@ webpackJsonp([1],{
 
 /***/ },
 
+/***/ 210:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(159);
+	var History = ReactRouter.History;
+	
+	var auth = __webpack_require__(211);
+	
+	// Top-level component for the app
+	var App = React.createClass({
+	  displayName: "App",
+	
+	  // mixin for navigation
+	  mixins: [History],
+	
+	  // initial state
+	  getInitialState: function () {
+	    return {
+	      // the user is logged in
+	      loggedIn: auth.loggedIn()
+	      //loggedIn: true
+	      //loggedIn: false
+	    };
+	  },
+	
+	  // callback when user is logged in
+	  setStateOnAuth: function (loggedIn) {
+	    this.setState({ loggedIn: loggedIn });
+	    //    this.setState(true);
+	  },
+	
+	  // when the component loads, setup the callback
+	  componentWillMount: function () {
+	    auth.onChange = this.setStateOnAuth;
+	  },
+	
+	  // logout the user and redirect to home page
+	  logout: function (event) {
+	    auth.logout();
+	    this.history.pushState(null, '/');
+	  },
+	
+	  // show the navigation bar
+	  // the route handler replaces the RouteHandler element with the current page
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      null,
+	      React.createElement(
+	        "nav",
+	        { className: "navbar navbar-default", role: "navigation" },
+	        React.createElement(
+	          "div",
+	          { className: "container" },
+	          React.createElement(
+	            "div",
+	            { className: "navbar-header" },
+	            React.createElement(
+	              "button",
+	              { type: "button", className: "navbar-toggle", "data-toggle": "collapse", "data-target": "#bs-example-navbar-collapse-1" },
+	              React.createElement(
+	                "span",
+	                { className: "sr-only" },
+	                "Toggle navigation"
+	              ),
+	              React.createElement("span", { className: "icon-bar" }),
+	              React.createElement("span", { className: "icon-bar" }),
+	              React.createElement("span", { className: "icon-bar" })
+	            ),
+	            React.createElement(
+	              "a",
+	              { className: "navbar-brand", href: "#" },
+	              "Home"
+	            )
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1" },
+	            this.state.loggedIn ? React.createElement(
+	              "ul",
+	              { className: "nav navbar-nav navbar-right" },
+	              React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                  "a",
+	                  { href: "#/list" },
+	                  "All"
+	                )
+	              ),
+	              React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                  "a",
+	                  { href: "#/list/active" },
+	                  "Active"
+	                )
+	              ),
+	              React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                  "a",
+	                  { href: "#/list/completed" },
+	                  "Completed"
+	                )
+	              ),
+	              React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                  "a",
+	                  { href: "#", onClick: this.logout },
+	                  "Logout"
+	                )
+	              )
+	            ) : React.createElement(
+	              "div",
+	              null,
+	              React.createElement(
+	                "ul",
+	                { className: "nav navbar-nav navbar-right" },
+	                React.createElement(
+	                  "li",
+	                  null,
+	                  React.createElement(
+	                    "a",
+	                    { href: "#/login" },
+	                    "Login"
+	                  )
+	                ),
+	                React.createElement(
+	                  "li",
+	                  null,
+	                  React.createElement(
+	                    "a",
+	                    { href: "#/register" },
+	                    "Register"
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "container" },
+	        this.props.children
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = App;
+
+/***/ },
+
 /***/ 211:
+/***/ function(module, exports, __webpack_require__) {
+
+	var $ = __webpack_require__(212);
+	
+	// authentication object
+	var auth = {
+	  register: function (name, username, password, cb) {
+	    // submit request to server, call the callback when complete
+	    var url = "/api/users/register";
+	    $.ajax({
+	      url: url,
+	      dataType: 'json',
+	      type: 'POST',
+	      data: {
+	        name: name,
+	        username: username,
+	        password: password
+	      },
+	      // on success, store a login token
+	      success: (function (res) {
+	        localStorage.token = res.token;
+	        localStorage.name = res.name;
+	        this.onChange(true);
+	        if (cb) cb(true);
+	      }).bind(this),
+	      error: (function (xhr, status, err) {
+	        // if there is an error, remove any login token
+	        delete localStorage.token;
+	        this.onChange(false);
+	        if (cb) cb(false);
+	      }).bind(this)
+	    });
+	  },
+	  // login the user
+	  login: function (username, password, cb) {
+	    // submit login request to server, call callback when complete
+	    cb = arguments[arguments.length - 1];
+	    // check if token in local storage
+	    if (localStorage.token) {
+	      this.onChange(true);
+	      if (cb) cb(true);
+	      return;
+	    }
+	
+	    // submit request to server
+	    var url = "/api/users/login";
+	    $.ajax({
+	      url: url,
+	      dataType: 'json',
+	      type: 'POST',
+	      data: {
+	        username: username,
+	        password: password
+	      },
+	      success: (function (res) {
+	        // on success, store a login token
+	        localStorage.token = res.token;
+	        localStorage.name = res.name;
+	        this.onChange(true);
+	        if (cb) cb(true);
+	      }).bind(this),
+	      error: (function (xhr, status, err) {
+	        // if there is an error, remove any login token
+	        delete localStorage.token;
+	        this.onChange(false);
+	        if (cb) cb(false);
+	      }).bind(this)
+	    });
+	  },
+	  // get the token from local storage
+	  getToken: function () {
+	    return localStorage.token;
+	  },
+	  // get the name from local storage
+	  getName: function () {
+	    return localStorage.name;
+	  },
+	  // logout the user, call the callback when complete
+	  logout: function (cb) {
+	    delete localStorage.token;
+	    this.onChange(false);
+	    if (cb) cb();
+	  },
+	  // check if user is logged in
+	  loggedIn: function () {
+	    return !!localStorage.token;
+	  },
+	  // default onChange function
+	  onChange: function () {}
+	};
+	
+	module.exports = auth;
+
+/***/ },
+
+/***/ 213:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -69,33 +325,27 @@ webpackJsonp([1],{
 	
 	  render: function () {
 	    var value = this.state.value;
-	    return React.createElement("input", { type: "text", className: "form-control", placeholder: "what you want to learn?", value: value, onChange: this.handleChange });
+	    return React.createElement("input", { type: "text", className: "form-control", placeholder: "what do you want to learn?", value: value, onChange: this.handleChange });
 	  }
 	});
-	
-	// TODO: add this in somewhere...
-	// var Login = React.createClass({
-	// render: function() {
-	// return (
-	// <div><img src={'http://cdn8.openculture.com/wp-content/uploads/2013/11/old-books-32.jpg'} alt="" className="background-image"/></div>);
-	// }});
 	
 	module.exports = Home;
 
 /***/ },
 
-/***/ 212:
+/***/ 214:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	var ListHeader = __webpack_require__(213);
-	var ListEntry = __webpack_require__(216);
-	var ListItems = __webpack_require__(217);
+	//var ListHeader = require("./listheader.js");
+	var LibraryTitle = __webpack_require__(215);
+	var ListEntry = __webpack_require__(217);
+	var ListItems = __webpack_require__(218);
 	
-	var api = __webpack_require__(214);
-	var auth = __webpack_require__(219);
+	var api = __webpack_require__(216);
+	var auth = __webpack_require__(211);
 	
 	// List page, shows the todo list of items
 	var List = React.createClass({
@@ -143,7 +393,7 @@ webpackJsonp([1],{
 	    return React.createElement(
 	      "section",
 	      { id: "todoapp" },
-	      React.createElement(ListHeader, { name: name, items: this.state.items, reload: this.reload }),
+	      React.createElement(LibraryTitle, { name: name, items: this.state.items, reload: this.reload }),
 	      React.createElement(
 	        "section",
 	        { id: "main" },
@@ -158,103 +408,94 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 213:
+/***/ 215:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	
-	var api = __webpack_require__(214);
+	var api = __webpack_require__(216);
 	
 	// List header, which shows who the list is for, the number of items in the list, and a button to clear completed items
-	var ListHeader = React.createClass({
-	  displayName: "ListHeader",
+	var LibraryTitle = React.createClass({
+	    displayName: "LibraryTitle",
 	
-	  // handle the clear completed button submit   
-	  clearCompleted: function (event) {
-	    // loop through the items, and delete any that are complete
-	    this.props.items.forEach(function (item) {
-	      if (item.completed) {
-	        api.deleteItem(item, null);
-	      }
-	    });
-	    // XXX race condition because the API call to delete is async
-	    // reload the list
-	    this.props.reload();
-	  },
+	    // handle the clear completed button submit
+	    clearCompleted: function (event) {
+	        // loop through the items, and delete any that are complete
+	        this.props.items.forEach(function (item) {
+	            if (item.completed) {
+	                api.deleteItem(item, null);
+	            }
+	        });
+	        // XXX race condition because the API call to delete is async
+	        // reload the list
+	        this.props.reload();
+	    },
 	
-	  // render the list header
-	  render: function () {
-	    // true if there are any completed items
-	    var completed = this.props.items.filter(function (item) {
-	      return item.completed;
-	    });
-	    return React.createElement(
-	      "header",
-	      { id: "header" },
-	      React.createElement(
-	        "div",
-	        { className: "row" },
-	        React.createElement(
-	          "div",
-	          { className: "col-md-6" },
-	          React.createElement(
-	            "p",
-	            null,
+	    // render the list header
+	    render: function () {
+	        // true if there are any completed items
+	        var completed = this.props.items.filter(function (item) {
+	            return item.completed;
+	        });
+	        return React.createElement(
+	            "header",
+	            { id: "header" },
 	            React.createElement(
-	              "i",
-	              null,
-	              "Lovingly created for ",
-	              this.props.name
+	                "div",
+	                { className: "row" },
+	                React.createElement(
+	                    "div",
+	                    { className: "col-md-6" },
+	                    React.createElement(
+	                        "p",
+	                        null,
+	                        React.createElement(
+	                            "i",
+	                            null,
+	                            this.props.name,
+	                            "'s custom library"
+	                        )
+	                    ),
+	                    React.createElement(
+	                        "p",
+	                        null,
+	                        React.createElement(
+	                            "span",
+	                            { id: "list-count", className: "label label-default" },
+	                            React.createElement(
+	                                "strong",
+	                                null,
+	                                this.props.items.length
+	                            ),
+	                            " item(s)"
+	                        )
+	                    )
+	                ),
+	                completed.length > 0 ? React.createElement(
+	                    "div",
+	                    { className: "col-md-6 right" },
+	                    React.createElement(
+	                        "button",
+	                        { className: "btn btn-warning btn-md", id: "clear-completed", onClick: this.clearCompleted },
+	                        "Remove selected items (",
+	                        completed.length,
+	                        ")"
+	                    )
+	                ) : null
 	            )
-	          ),
-	          React.createElement(
-	            "p",
-	            null,
-	            React.createElement(
-	              "span",
-	              { id: "list-count", className: "label label-default" },
-	              React.createElement(
-	                "strong",
-	                null,
-	                this.props.items.length
-	              ),
-	              " item(s)"
-	            )
-	          ),
-	          React.createElement(
-	            "p",
-	            null,
-	            React.createElement(
-	              "i",
-	              null,
-	              "Double-click to edit an item"
-	            )
-	          )
-	        ),
-	        completed.length > 0 ? React.createElement(
-	          "div",
-	          { className: "col-md-6 right" },
-	          React.createElement(
-	            "button",
-	            { className: "btn btn-warning btn-md", id: "clear-completed", onClick: this.clearCompleted },
-	            "Clear completed (",
-	            completed.length,
-	            ")"
-	          )
-	        ) : null
-	      )
-	    );
-	  }
+	        );
+	    }
 	});
 	
-	module.exports = ListHeader;
+	module.exports = LibraryTitle;
 
 /***/ },
 
-/***/ 214:
+/***/ 216:
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(215);
+	var $ = __webpack_require__(212);
 	
 	// API object
 	var api = {
@@ -347,12 +588,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 216:
+/***/ 217:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	
-	var api = __webpack_require__(214);
+	var api = __webpack_require__(216);
 	
 	// List entry component, handles adding new items to the list
 	var ListEntry = React.createClass({
@@ -390,13 +631,13 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 217:
+/***/ 218:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	var Item = __webpack_require__(218);
+	var Item = __webpack_require__(219);
 	
 	// List items component, shows the list of items
 	var ListItems = React.createClass({
@@ -438,12 +679,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 218:
+/***/ 219:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	
-	var api = __webpack_require__(214);
+	var api = __webpack_require__(216);
 	
 	// Item shown in the todo list
 	var Item = React.createClass({
@@ -545,102 +786,6 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 219:
-/***/ function(module, exports, __webpack_require__) {
-
-	var $ = __webpack_require__(215);
-	
-	// authentication object
-	var auth = {
-	  register: function (name, username, password, cb) {
-	    // submit request to server, call the callback when complete
-	    var url = "/api/users/register";
-	    $.ajax({
-	      url: url,
-	      dataType: 'json',
-	      type: 'POST',
-	      data: {
-	        name: name,
-	        username: username,
-	        password: password
-	      },
-	      // on success, store a login token
-	      success: (function (res) {
-	        localStorage.token = res.token;
-	        localStorage.name = res.name;
-	        this.onChange(true);
-	        if (cb) cb(true);
-	      }).bind(this),
-	      error: (function (xhr, status, err) {
-	        // if there is an error, remove any login token
-	        delete localStorage.token;
-	        this.onChange(false);
-	        if (cb) cb(false);
-	      }).bind(this)
-	    });
-	  },
-	  // login the user
-	  login: function (username, password, cb) {
-	    // submit login request to server, call callback when complete
-	    cb = arguments[arguments.length - 1];
-	    // check if token in local storage
-	    if (localStorage.token) {
-	      this.onChange(true);
-	      if (cb) cb(true);
-	      return;
-	    }
-	
-	    // submit request to server
-	    var url = "/api/users/login";
-	    $.ajax({
-	      url: url,
-	      dataType: 'json',
-	      type: 'POST',
-	      data: {
-	        username: username,
-	        password: password
-	      },
-	      success: (function (res) {
-	        // on success, store a login token
-	        localStorage.token = res.token;
-	        localStorage.name = res.name;
-	        this.onChange(true);
-	        if (cb) cb(true);
-	      }).bind(this),
-	      error: (function (xhr, status, err) {
-	        // if there is an error, remove any login token
-	        delete localStorage.token;
-	        this.onChange(false);
-	        if (cb) cb(false);
-	      }).bind(this)
-	    });
-	  },
-	  // get the token from local storage
-	  getToken: function () {
-	    return localStorage.token;
-	  },
-	  // get the name from local storage
-	  getName: function () {
-	    return localStorage.name;
-	  },
-	  // logout the user, call the callback when complete
-	  logout: function (cb) {
-	    delete localStorage.token;
-	    this.onChange(false);
-	    if (cb) cb();
-	  },
-	  // check if user is logged in
-	  loggedIn: function () {
-	    return !!localStorage.token;
-	  },
-	  // default onChange function
-	  onChange: function () {}
-	};
-	
-	module.exports = auth;
-
-/***/ },
-
 /***/ 220:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -648,7 +793,7 @@ webpackJsonp([1],{
 	var ReactRouter = __webpack_require__(159);
 	var History = ReactRouter.History;
 	
-	var auth = __webpack_require__(219);
+	var auth = __webpack_require__(211);
 	
 	// Login page, shows the login form and redirects to the list if login is successful
 	var Login = React.createClass({
@@ -722,7 +867,7 @@ webpackJsonp([1],{
 	var ReactRouter = __webpack_require__(159);
 	var History = ReactRouter.History;
 	
-	var auth = __webpack_require__(219);
+	var auth = __webpack_require__(211);
 	
 	// Register page, shows the registration form and redirects to the list if login is successful
 	var Register = React.createClass({
