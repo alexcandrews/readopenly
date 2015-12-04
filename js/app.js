@@ -673,6 +673,7 @@ webpackJsonp([1],{
 	  contextTypes: {
 	    location: React.PropTypes.object
 	  },
+	
 	  // render the list of items
 	  render: function () {
 	    // get list of items to show, using the path to the current page
@@ -696,7 +697,11 @@ webpackJsonp([1],{
 	    return React.createElement(
 	      "ul",
 	      { id: "todo-list" },
-	      list
+	      React.createElement(
+	        "a",
+	        { href: "www.google.com" },
+	        "ITEM"
+	      )
 	    );
 	  }
 	});
@@ -820,8 +825,8 @@ webpackJsonp([1],{
 	var api = __webpack_require__(217);
 	
 	// Item shown in the todo list
-	var LirbraryItem = React.createClass({
-	    displayName: "LirbraryItem",
+	var LibraryItem = React.createClass({
+	    displayName: "LibraryItem",
 	
 	    // initial state
 	    getInitialState: function () {
