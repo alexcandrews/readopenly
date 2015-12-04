@@ -13,12 +13,13 @@ webpackJsonp([1],{
 	
 	var App = __webpack_require__(210);
 	var Home = __webpack_require__(213);
-	var List = __webpack_require__(215);
-	var Login = __webpack_require__(221);
-	var Register = __webpack_require__(222);
+	//var List = require("./list.js");
+	var LibraryItemList = __webpack_require__(215);
+	var Login = __webpack_require__(220);
+	var Register = __webpack_require__(221);
 	
-	__webpack_require__(223);
-	__webpack_require__(232);
+	__webpack_require__(222);
+	__webpack_require__(231);
 	
 	var routes = React.createElement(
 	  Router,
@@ -27,9 +28,9 @@ webpackJsonp([1],{
 	    Route,
 	    { name: "app", path: "/", component: App },
 	    React.createElement(IndexRoute, { component: Home }),
-	    React.createElement(Route, { name: "list", path: "/list", component: List }),
-	    React.createElement(Route, { name: "active", path: "/list/active", component: List }),
-	    React.createElement(Route, { name: "completed", path: "/list/completed", component: List }),
+	    React.createElement(Route, { name: "libraryitemlist", path: "/libraryitemlist", component: LibraryItemList }),
+	    React.createElement(Route, { name: "active", path: "/list/active", component: LibraryItemList }),
+	    React.createElement(Route, { name: "completed", path: "/list/completed", component: LibraryItemList }),
 	    React.createElement(Route, { name: "login", path: "/login", component: Login }),
 	    React.createElement(Route, { name: "register", path: "/register", component: Register })
 	  )
@@ -371,72 +372,69 @@ webpackJsonp([1],{
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	//var ListHeader = require("./listheader.js");
 	var LibraryTitle = __webpack_require__(216);
-	var ListEntry = __webpack_require__(218);
-	var ListItems = __webpack_require__(219);
+	var ListItems = __webpack_require__(218);
 	
 	var api = __webpack_require__(217);
 	var auth = __webpack_require__(211);
 	
-	// List page, shows the todo list of items
-	var List = React.createClass({
-	  displayName: "List",
+	// Library list page, show items checked out
+	var LibraryItemList = React.createClass({
+	    displayName: "LibraryItemList",
 	
-	  // context so the component can access the router
-	  contextTypes: {
-	    location: React.PropTypes.object
-	  },
+	    // context so the component can access the router
+	    contextTypes: {
+	        location: React.PropTypes.object
+	    },
 	
-	  // initial state
-	  getInitialState: function () {
-	    return {
-	      // list of items in the todo list
-	      items: []
-	    };
-	  },
+	    // initial state
+	    getInitialState: function () {
+	        return {
+	            // list of items "checked out"
+	            items: []
+	        };
+	    },
 	
-	  // when the component loads, get the list items
-	  componentDidMount: function () {
-	    api.getItems(this.listSet);
-	  },
+	    // when the component loads, get the list items
+	    componentDidMount: function () {
+	        api.getItems(this.listSet);
+	    },
 	
-	  // reload the list of items
-	  reload: function () {
-	    api.getItems(this.listSet);
-	  },
+	    // reload the list of items
+	    reload: function () {
+	        api.getItems(this.listSet);
+	    },
 	
-	  // callback for getting the list of items, sets the list state
-	  listSet: function (status, data) {
-	    if (status) {
-	      // set the state for the list of items
-	      this.setState({
-	        items: data.items
-	      });
-	    } else {
-	      // if the API call fails, redirect to the login page
-	      this.context.router.transitionTo('/login');
+	    // callback for getting the list of items, sets the list state
+	    listSet: function (status, data) {
+	        if (status) {
+	            // set the state for the list of items
+	            this.setState({
+	                items: data.items
+	            });
+	        } else {
+	            // if the API call fails, redirect to the login page
+	            this.context.router.transitionTo('/login');
+	        }
+	    },
+	
+	    // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
+	    render: function () {
+	        var name = auth.getName();
+	        return React.createElement(
+	            "section",
+	            { id: "todoapp" },
+	            React.createElement(LibraryTitle, { name: name, items: this.state.items, reload: this.reload }),
+	            React.createElement(
+	                "section",
+	                { id: "main" },
+	                React.createElement(ListItems, { items: this.state.items, reload: this.reload })
+	            )
+	        );
 	    }
-	  },
-	
-	  // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
-	  render: function () {
-	    var name = auth.getName();
-	    return React.createElement(
-	      "section",
-	      { id: "todoapp" },
-	      React.createElement(LibraryTitle, { name: name, items: this.state.items, reload: this.reload }),
-	      React.createElement(
-	        "section",
-	        { id: "main" },
-	        React.createElement(ListEntry, { reload: this.reload }),
-	        React.createElement(ListItems, { items: this.state.items, reload: this.reload })
-	      )
-	    );
-	  }
 	});
 	
-	module.exports = List;
+	module.exports = LibraryItemList;
 
 /***/ },
 
@@ -624,52 +622,9 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	
-	var api = __webpack_require__(217);
-	
-	// List entry component, handles adding new items to the list
-	var ListEntry = React.createClass({
-	  displayName: "ListEntry",
-	
-	  // handles submit event for adding a new item
-	  addItem: function (event) {
-	    // prevent default browser submit
-	    event.preventDefault();
-	    // get data from form
-	    var title = this.refs.title.value;
-	    if (!title) {
-	      return;
-	    }
-	    // call API to add item, and reload once added
-	    api.addItem(title, this.props.reload);
-	    this.refs.title.value = '';
-	  },
-	
-	  // render the item entry area
-	  render: function () {
-	    return React.createElement(
-	      "header",
-	      { id: "input" },
-	      React.createElement(
-	        "form",
-	        { id: "item-form", name: "itemForm", onSubmit: this.addItem },
-	        React.createElement("input", { type: "text", id: "new-item", ref: "title", placeholder: "Enter a new item", autoFocus: true })
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = ListEntry;
-
-/***/ },
-
-/***/ 219:
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	var Item = __webpack_require__(220);
+	var Item = __webpack_require__(219);
 	
 	// List items component, shows the list of items
 	var ListItems = React.createClass({
@@ -711,7 +666,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 220:
+/***/ 219:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -818,7 +773,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 221:
+/***/ 220:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -892,7 +847,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 222:
+/***/ 221:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -968,14 +923,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 223:
+/***/ 222:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 232:
+/***/ 231:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
