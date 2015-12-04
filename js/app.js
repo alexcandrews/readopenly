@@ -967,9 +967,31 @@ webpackJsonp([1],{
 	      React.createElement(
 	        "form",
 	        { className: "form-inline", onSubmit: this.login },
-	        React.createElement("input", { type: "text", className: "form-control", label: "username", placeholder: "Username", ref: "username", autoFocus: true }),
-	        React.createElement("input", { type: "password", className: "form-control", label: "password", placeholder: "Password", ref: "password" }),
-	        React.createElement("input", { className: "btn btn-primary", type: "submit", value: "Login" }),
+	        React.createElement(
+	          "div",
+	          { className: "form-group" },
+	          React.createElement(
+	            "label",
+	            { "for": "username" },
+	            "Username: "
+	          ),
+	          React.createElement("input", { type: "text", className: "form-control", id: "username", placeholder: "Username", ref: "username", autoFocus: true })
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "form-group" },
+	          React.createElement(
+	            "label",
+	            { "for": "password" },
+	            "Password: "
+	          ),
+	          React.createElement("input", { type: "password", className: "form-control", id: "password", placeholder: "Password", ref: "password" })
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "form-group" },
+	          React.createElement("input", { className: "btn btn-primary", type: "submit", value: "Login" })
+	        ),
 	        this.state.error ? React.createElement(
 	          "div",
 	          { className: "alert" },
