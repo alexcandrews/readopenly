@@ -967,8 +967,8 @@ webpackJsonp([1],{
 	      React.createElement(
 	        "form",
 	        { className: "form-vertical", onSubmit: this.login },
-	        React.createElement("input", { type: "text", placeholder: "Username", ref: "username", autoFocus: true }),
-	        React.createElement("input", { type: "password", placeholder: "Password", ref: "password" }),
+	        React.createElement("input", { type: "text", className: "form-control", placeholder: "Username", ref: "username", autoFocus: true }),
+	        React.createElement("input", { type: "password", className: "form-control", placeholder: "Password", ref: "password" }),
 	        React.createElement("input", { className: "btn btn-warning", type: "submit", value: "Login" }),
 	        this.state.error ? React.createElement(
 	          "div",
