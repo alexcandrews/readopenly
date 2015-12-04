@@ -325,7 +325,12 @@ webpackJsonp([1],{
 	
 	  render: function () {
 	    var value = this.state.value;
-	    return React.createElement("input", { type: "text", className: "form-control", placeholder: "what do you want to learn?", value: value, onChange: this.handleChange });
+	    return React.createElement(
+	      "div",
+	      null,
+	      React.createElement("input", { type: "text", className: "form-control", placeholder: "what do you want to learn?", value: value, onChange: this.handleChange }),
+	      React.createElement("input", { className: "btn btn-primary", type: "submit", value: "search" })
+	    );
 	  }
 	});
 	
