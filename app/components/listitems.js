@@ -2,6 +2,7 @@ var React = require("react");
 var ReactRouter = require("react-router");
 
 var Item = require("./item.js");
+var LibraryItem = require("./libraryitem.js");
 
 // List items component, shows the list of items
 var ListItems = React.createClass({
@@ -33,7 +34,9 @@ var ListItems = React.createClass({
     // render the list
     return (
       <ul id="todo-list">
-	{list}
+        {
+          //list
+        }
       </ul>
     );
   }

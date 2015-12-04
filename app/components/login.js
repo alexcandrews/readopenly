@@ -44,11 +44,19 @@ var Login = React.createClass({
     return (
       <div>
         <h2>Login</h2>
-        <form className="form-vertical" onSubmit={this.login}>
-          <input type="text" placeholder="Username" ref="username" autoFocus={true} />
-          <input type="password" placeholder="Password" ref="password"/>
-          <input className="btn btn-warning" type="submit" value="Login" />
-          {this.state.error ? (
+        <form className="form-inline" onSubmit={this.login}>
+          <div className="form-group">
+            <label for="username">Username: </label>
+            <input type="text" className="form-control" id="username" placeholder="Username" ref="username" autoFocus={true} />
+          </div>
+          <div className="form-group">
+            <label for="password">Password: </label>
+            <input type="password" className="form-control" id="password" placeholder="Password" ref="password"/>
+          </div>
+          <div className="form-group">
+            <input className="btn btn-primary" type="submit" value="Login" />
+          </div>
+            {this.state.error ? (
              <div className="alert">Invalid username or password ya filthy animal.</div>
            ) : null}
         </form>
