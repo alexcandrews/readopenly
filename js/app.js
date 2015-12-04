@@ -439,50 +439,54 @@ webpackJsonp([1],{
 	            return item.completed;
 	        });
 	        return React.createElement(
-	            "header",
-	            { id: "header" },
+	            "center",
+	            null,
 	            React.createElement(
-	                "div",
-	                { className: "row" },
+	                "header",
+	                { id: "header" },
 	                React.createElement(
 	                    "div",
-	                    { className: "col-md-6" },
+	                    { className: "row" },
 	                    React.createElement(
-	                        "p",
-	                        null,
+	                        "div",
+	                        { className: "col-md-6" },
 	                        React.createElement(
-	                            "i",
+	                            "p",
 	                            null,
-	                            this.props.name,
-	                            "'s custom library"
+	                            React.createElement(
+	                                "i",
+	                                null,
+	                                this.props.name,
+	                                "'s custom library"
+	                            )
+	                        ),
+	                        React.createElement(
+	                            "p",
+	                            null,
+	                            React.createElement(
+	                                "span",
+	                                { id: "list-count", className: "label label-default" },
+	                                React.createElement(
+	                                    "strong",
+	                                    null,
+	                                    this.props.items.length
+	                                ),
+	                                " item(s)"
+	                            )
 	                        )
 	                    ),
-	                    React.createElement(
-	                        "p",
-	                        null,
+	                    completed.length > 0 ? React.createElement(
+	                        "div",
+	                        { className: "col-md-6 right" },
 	                        React.createElement(
-	                            "span",
-	                            { id: "list-count", className: "label label-default" },
-	                            React.createElement(
-	                                "strong",
-	                                null,
-	                                this.props.items.length
-	                            ),
-	                            " item(s)"
+	                            "button",
+	                            { className: "btn btn-warning btn-md", id: "clear-completed", onClick: this.clearCompleted },
+	                            "Remove selected items (",
+	                            completed.length,
+	                            ")"
 	                        )
-	                    )
-	                ),
-	                completed.length > 0 ? React.createElement(
-	                    "div",
-	                    { className: "col-md-6 right" },
-	                    React.createElement(
-	                        "button",
-	                        { className: "btn btn-warning btn-md", id: "clear-completed", onClick: this.clearCompleted },
-	                        "Remove selected items (",
-	                        completed.length,
-	                        ")"
-	                    )
-	                ) : null
+	                    ) : null
+	                )
 	            )
 	        );
 	    }
