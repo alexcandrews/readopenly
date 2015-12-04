@@ -14,13 +14,13 @@ webpackJsonp([1],{
 	var App = __webpack_require__(210);
 	var Home = __webpack_require__(213);
 	var List = __webpack_require__(215);
-	var LibraryItemList = __webpack_require__(221);
-	var LibraryPage = __webpack_require__(222);
-	var Login = __webpack_require__(223);
-	var Register = __webpack_require__(224);
+	var LibraryItemList = __webpack_require__(222);
+	var LibraryPage = __webpack_require__(223);
+	var Login = __webpack_require__(224);
+	var Register = __webpack_require__(225);
 	
-	__webpack_require__(225);
-	__webpack_require__(234);
+	__webpack_require__(226);
+	__webpack_require__(235);
 	
 	var routes = React.createElement(
 	  Router,
@@ -344,7 +344,7 @@ webpackJsonp([1],{
 	        var value = this.state.value;
 	        return React.createElement(
 	            "div",
-	            { className: "col-xs-2" },
+	            null,
 	            React.createElement(
 	                "center",
 	                null,
@@ -663,6 +663,7 @@ webpackJsonp([1],{
 	var ReactRouter = __webpack_require__(159);
 	
 	var Item = __webpack_require__(220);
+	var LibraryItem = __webpack_require__(221);
 	
 	// List items component, shows the list of items
 	var ListItems = React.createClass({
@@ -672,6 +673,7 @@ webpackJsonp([1],{
 	  contextTypes: {
 	    location: React.PropTypes.object
 	  },
+	
 	  // render the list of items
 	  render: function () {
 	    // get list of items to show, using the path to the current page
@@ -695,7 +697,11 @@ webpackJsonp([1],{
 	    return React.createElement(
 	      "ul",
 	      { id: "todo-list" },
-	      list
+	      React.createElement(
+	        "a",
+	        { href: "www.google.com" },
+	        "ITEM"
+	      )
 	    );
 	  }
 	});
@@ -815,6 +821,117 @@ webpackJsonp([1],{
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	
+	var api = __webpack_require__(217);
+	
+	// Item shown in the todo list
+	var LirbraryItem = React.createClass({
+	    displayName: "LirbraryItem",
+	
+	    // initial state
+	    getInitialState: function () {
+	        return {
+	            // editing this item
+	            editing: false,
+	            // text saved before editing started
+	            editText: this.props.item.title
+	        };
+	    },
+	    // set the focus and selection range when this item is updated
+	    componentDidUpdate: function (prevProps, prevState) {
+	        if (!prevState.editing && this.state.editing) {
+	            var node = this.refs.editField.getDOMNode();
+	            node.focus();
+	            node.setSelectionRange(0, node.value.length);
+	        }
+	    },
+	    // when the item is completed, toggle its state and update it
+	    toggleCompleted: function () {
+	        this.props.item.completed = !this.props.item.completed;
+	        api.updateItem(this.props.item, this.props.reload);
+	    },
+	    // called when the delete button is clicked for this item
+	    deleteItem: function () {
+	        api.deleteItem(this.props.item, this.props.reload);
+	    },
+	    // called when the item is double-clicked
+	    editItem: function () {
+	        this.setState({ editing: true, editText: this.props.item.title });
+	    },
+	    // called when the item is changed
+	    changeItem: function (event) {
+	        this.setState({ editText: event.target.value });
+	    },
+	    // called when the enter key is entered after the item is edited
+	    saveItem: function (event) {
+	        if (!this.state.editing) {
+	            return;
+	        }
+	        var val = this.state.editText.trim();
+	        if (val) {
+	            this.setState({ editing: false, editText: val });
+	            this.props.item.title = this.state.editText;
+	            // save the item
+	            api.updateItem(this.props.item, this.props.reload);
+	        } else {
+	            // delete the item if there is no text left any more
+	            api.deleteItem(this.props.item, this.props.reload);
+	        }
+	    },
+	    // called when a key is pressed
+	    handleKeyDown: function (event) {
+	        var ESCAPE_KEY = 27;
+	        var ENTER_KEY = 13;
+	        // if the ESC key is pressed, then cancel editing
+	        // if the ENTER key is pressed, then save edited text
+	        if (event.which === ESCAPE_KEY) {
+	            this.setState({ editing: false, editText: this.props.item.title });
+	        } else if (event.which === ENTER_KEY) {
+	            this.saveItem(event);
+	        }
+	    },
+	    // render the Item
+	    render: function () {
+	        // construct a list of classes for the item CSS
+	        var classes = "";
+	        if (this.props.item.completed) {
+	            classes += 'completed';
+	        }
+	        if (this.state.editing) {
+	            classes += ' editing';
+	        }
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(
+	                "a",
+	                { href: "www.google.com" },
+	                "ITEM"
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = LibraryItem;
+	
+	/*
+	 <li className={classes}>
+	 <div className="view">
+	 <input id={this.props.item.id} className="toggle" type="checkbox" onChange={this.toggleCompleted.bind(this,this.props.item)} checked={this.props.item.completed} />
+	 <label className="check" htmlFor={this.props.item.id}/>
+	 <label onDoubleClick={this.editItem}>{this.props.item.title}</label>
+	 <button className="destroy" onClick={this.deleteItem}></button>
+	 </div>
+	 <input ref="editField" className="edit" onKeyDown={this.handleKeyDown} onChange={this.changeItem} onSubmit={this.saveItem} onBlur={this.saveItem} value={this.state.editText} />
+	 </li>
+	 */
+
+/***/ },
+
+/***/ 222:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
 	var LibraryHeader = __webpack_require__(216);
@@ -883,14 +1000,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 222:
+/***/ 223:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
 	var LibraryHeader = __webpack_require__(216);
-	var LibraryItemList = __webpack_require__(221);
+	var LibraryItemList = __webpack_require__(222);
 	var SearchBar = __webpack_require__(214);
 	
 	var LibraryPage = React.createClass({
@@ -910,7 +1027,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 223:
+/***/ 224:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -1006,7 +1123,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 224:
+/***/ 225:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -1082,14 +1199,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 225:
+/***/ 226:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 234:
+/***/ 235:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
