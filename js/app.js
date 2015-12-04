@@ -317,23 +317,6 @@ webpackJsonp([1],{
 	var Home = React.createClass({
 	  displayName: "Home",
 	
-	  /*
-	  getInitialState: function() {
-	    return {value: ''};
-	    },
-	  handleChange: function(event) {
-	    this.setState({value: event.target.value});
-	  },
-	   render: function() {
-	    var value = this.state.value;
-	    return (
-	        <div>
-	          <input type="text" className="form-control" placeholder="what do you want to learn?" value={value} onChange={this.handleChange} />
-	          <input className="btn btn-primary" type="submit" value="?" />
-	        </div>
-	    );
-	  }
-	  */
 	  render: function () {
 	    return React.createElement(
 	      "div",
