@@ -1,8 +1,8 @@
 var React = require("react");
 var ReactRouter = require("react-router");
 
-var ListHeader = require("./listheader.js");
-var ListEntry = require("./listentry.js");
+var LibraryHeader = require("./libraryheader.js");
+var ListEntry = require("./listentry.js")
 var ListItems = require("./listitems.js");
 
 var api = require("./api.js");
@@ -49,14 +49,14 @@ var List = React.createClass({
   // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
   render: function() {
     var name = auth.getName();
-    return (
-      <section id="todoapp">
-	<ListHeader name={name} items={this.state.items} reload={this.reload} />
-	<section id="main">
-	  <ListEntry reload={this.reload}/>
-	  <ListItems items={this.state.items} reload={this.reload}/>
-	</section>
-      </section>
+    return(
+        <section id="todoapp">
+	      <LibraryHeader name={name} items={this.state.items} reload={this.reload} />
+	      <section id="main">
+	        <ListEntry reload={this.reload}/>
+	        <ListItems items={this.state.items} reload={this.reload}/>
+	      </section>
+        </section>
     );
   }
 });
