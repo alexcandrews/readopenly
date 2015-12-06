@@ -994,7 +994,7 @@ webpackJsonp([1],{
 	        return React.createElement(
 	            "ul",
 	            null,
-	            this.props.new_items.map(createItem)
+	            this.state.new_items.map(createItem)
 	        );
 	        /*
 	        var name = auth.getName();
