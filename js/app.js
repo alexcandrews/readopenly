@@ -997,7 +997,7 @@ webpackJsonp([1],{
 	                    ),
 	                    React.createElement(
 	                        "button",
-	                        { type: "button", className: "btn btn-info" },
+	                        { type: "button", className: "btn btn-primary btn-sm" },
 	                        React.createElement("span", { className: "glyphicon glyphicon-plus" })
 	                    )
 	                )
