@@ -953,7 +953,7 @@ webpackJsonp([1],{
 	    getInitialState: function () {
 	        return {
 	            // list of items "checked out"
-	            new_items: ["www.google.com", "www.facebook.com", "www.galaxyquest.com"],
+	            new_items: [],
 	            items: []
 	        };
 	    },
@@ -1035,7 +1035,7 @@ webpackJsonp([1],{
 	            "div",
 	            null,
 	            React.createElement(SearchBar, null),
-	            React.createElement(LibraryItemList, null)
+	            React.createElement(LibraryItemList, { new_items: ["www.google.com", "www.facebook.com", "www.galaxyquest.com"] })
 	        );
 	    }
 	});
