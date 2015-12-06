@@ -953,7 +953,7 @@ webpackJsonp([1],{
 	    getInitialState: function () {
 	        return {
 	            // list of items "checked out"
-	            new_items: ["www.google.com", "www.google.com", "www.google.com"],
+	            new_items: ["www.google.com", "www.facebook.com", "www.galaxyquest.com"],
 	            items: []
 	        };
 	    },
@@ -985,11 +985,14 @@ webpackJsonp([1],{
 	    render: function () {
 	        var createItem = function (item) {
 	            return React.createElement(
-	                "p",
+	                "li",
 	                null,
-	                "hello there!"
+	                React.createElement(
+	                    "a",
+	                    { href: item },
+	                    "item"
+	                )
 	            );
-	            //return <li><a href={item}>asdf</a></li>;
 	        };
 	        return React.createElement(
 	            "ul",
