@@ -986,10 +986,7 @@ webpackJsonp([1],{
 	        var createItem = function (item) {
 	            return React.createElement(
 	                "li",
-	                null,
-	                "key=",
-	                item.id,
-	                " ",
+	                { key: item.id },
 	                React.createElement(
 	                    "a",
 	                    { href: item },
