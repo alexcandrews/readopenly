@@ -985,14 +985,11 @@ webpackJsonp([1],{
 	    render: function () {
 	        var createItem = function (item) {
 	            return React.createElement(
-	                "li",
+	                "p",
 	                null,
-	                React.createElement(
-	                    "a",
-	                    { href: item },
-	                    "asdf"
-	                )
+	                "hello there!"
 	            );
+	            //return <li><a href={item}>asdf</a></li>;
 	        };
 	        return React.createElement(
 	            "ul",
