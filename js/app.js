@@ -985,13 +985,19 @@ webpackJsonp([1],{
 	    render: function () {
 	        var createItem = function (item) {
 	            return React.createElement(
-	                "li",
-	                { key: item.id },
+	                "div",
+	                null,
 	                React.createElement(
-	                    "a",
-	                    { href: item },
-	                    item
-	                )
+	                    "li",
+	                    { key: item.id },
+	                    React.createElement(
+	                        "a",
+	                        { href: item },
+	                        item
+	                    )
+	                ),
+	                React.createElement("input", { className: "btn btn-info" }),
+	                React.createElement("span", { className: "glyphicon glyphicon-plus" })
 	            );
 	        };
 	        return React.createElement(
