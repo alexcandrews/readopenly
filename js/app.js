@@ -953,6 +953,7 @@ webpackJsonp([1],{
 	    getInitialState: function () {
 	        return {
 	            // list of items "checked out"
+	            new_items: ["www.google.com", "www.google.com", "www.google.com"],
 	            items: []
 	        };
 	    },
@@ -982,10 +983,21 @@ webpackJsonp([1],{
 	
 	    // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
 	    render: function () {
+	        var createItem = function (item) {
+	            return React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                    "a",
+	                    { href: item },
+	                    "asdf"
+	                )
+	            );
+	        };
 	        return React.createElement(
-	            "p",
+	            "ul",
 	            null,
-	            "Hello"
+	            this.props.new_items.map(createItem(item))
 	        );
 	        /*
 	        var name = auth.getName();
