@@ -990,7 +990,7 @@ webpackJsonp([1],{
 	                React.createElement(
 	                    "a",
 	                    { href: item },
-	                    "item"
+	                    item
 	                )
 	            );
 	        };
