@@ -994,12 +994,12 @@ webpackJsonp([1],{
 	                        "a",
 	                        { href: item },
 	                        item
+	                    ),
+	                    React.createElement(
+	                        "button",
+	                        { type: "button", className: "btn btn-info" },
+	                        React.createElement("span", { className: "glyphicon glyphicon-plus" })
 	                    )
-	                ),
-	                React.createElement(
-	                    "button",
-	                    { type: "button", className: "btn btn-info" },
-	                    React.createElement("span", { className: "glyphicon glyphicon-plus" })
 	                )
 	            );
 	        };
