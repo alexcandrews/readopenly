@@ -1053,7 +1053,7 @@ webpackJsonp([1],{
 	            "div",
 	            null,
 	            React.createElement(SearchBar, null),
-	            React.createElement(LibraryItemList, { new_items: ["http://www.google.com", "www.facebook.com", "www.galaxyquest.com"] })
+	            React.createElement(LibraryItemList, { new_items: ["http://www.google.com", "http://www.facebook.com", "http://www.galaxyquest.com"] })
 	        );
 	    }
 	});
