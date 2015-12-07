@@ -904,9 +904,18 @@ webpackJsonp([1],{
 	            "div",
 	            null,
 	            React.createElement(
-	                "a",
-	                { href: "www.google.com" },
-	                "ITEM"
+	                "li",
+	                null,
+	                React.createElement(
+	                    "a",
+	                    { href: item },
+	                    item
+	                ),
+	                React.createElement(
+	                    "button",
+	                    { type: "button", className: "btn btn-primary btn-sm" },
+	                    React.createElement("span", { className: "glyphicon glyphicon-plus" })
+	                )
 	            )
 	        );
 	    }
@@ -989,7 +998,7 @@ webpackJsonp([1],{
 	                null,
 	                React.createElement(
 	                    "li",
-	                    { key: item.id },
+	                    null,
 	                    React.createElement(
 	                        "a",
 	                        { href: item },
@@ -1044,7 +1053,7 @@ webpackJsonp([1],{
 	            "div",
 	            null,
 	            React.createElement(SearchBar, null),
-	            React.createElement(LibraryItemList, { new_items: ["www.google.com", "www.facebook.com", "www.galaxyquest.com"] })
+	            React.createElement(LibraryItemList, { key: item.id, new_items: ["www.google.com", "www.facebook.com", "www.galaxyquest.com"] })
 	        );
 	    }
 	});
