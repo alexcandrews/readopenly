@@ -1288,7 +1288,7 @@ webpackJsonp([1],{
 	            ),
 	            React.createElement(
 	                "form",
-	                { className: "form-inline" },
+	                { className: "form-control" },
 	                React.createElement(
 	                    "div",
 	                    { className: "form-group" },
