@@ -35,12 +35,6 @@ module.exports = {
                 test: /\.html$/,
                 loader: "file?name=[name].[ext]",
             },
-            // loader for images
-            // inline base64 URLs for <=8k images, direct URLs for the rest
-            {
-                test: /\.(png|jpg|jpeg)$/,
-                loader: 'url-loader?limit=8192'
-            },
             // loaders for Bootstrap CSS
             {
                 test: /\.css$/,
@@ -61,6 +55,18 @@ module.exports = {
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "url?name=assets/[name].[ext]&limit=10000&mimetype=image/svg+xml"
+            },
+            {
+                test: /\.png(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url?name=assets/[name].[ext]&limit=10000&mimetype=image/png"
+            },
+            {
+                test: /\.jp(e)?g(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url?name=assets/[name].[ext]&limit=10000&mimetype=image/jpeg"
+            },
+            {
+                test: /\.tiff(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url?name=assets/[name].[ext]&limit=10000&mimetype=image/tiff"
             }
         ],
     },
