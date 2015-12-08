@@ -1,6 +1,8 @@
 #####=== Project Specific ===#####
 .publish/
 public/
+# mongodb dump
+dump/
 
 #####=== Node ===#####
 # Logs

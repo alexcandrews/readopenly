@@ -4,13 +4,13 @@ var SearchBar = require("./searchbar.js");
 //var BackgroundImage = require("./backgroundimage.js");
 
 var HomePage = React.createClass({
-  render: function() {
-    return (
-        <div>
-            <SearchBar />
-        </div>
-    );
-  }
+    render: function () {
+        return (
+            <div>
+                <SearchBar />
+            </div>
+        );
+    }
 
 });
 
