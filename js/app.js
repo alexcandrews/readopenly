@@ -11,18 +11,18 @@ webpackJsonp([1],{
 	var Route = ReactRouter.Route;
 	var IndexRoute = ReactRouter.IndexRoute;
 	
-	var App = __webpack_require__(208);
-	var HomePage = __webpack_require__(211);
-	var LibraryItemList = __webpack_require__(220);
-	var SubmitResourcePage = __webpack_require__(224);
-	var LoginOrRegisterPage = __webpack_require__(238);
-	var List = __webpack_require__(213);
-	var LibraryPage = __webpack_require__(221);
-	var Login = __webpack_require__(222);
-	var Register = __webpack_require__(223);
+	var App = __webpack_require__(210);
+	var HomePage = __webpack_require__(213);
+	var LibraryItemList = __webpack_require__(215);
+	var SubmitResourcePage = __webpack_require__(221);
+	var LoginOrRegisterPage = __webpack_require__(224);
+	var List = __webpack_require__(227);
+	var LibraryPage = __webpack_require__(229);
+	var Login = __webpack_require__(225);
+	var Register = __webpack_require__(226);
 	
-	__webpack_require__(227);
-	__webpack_require__(236);
+	__webpack_require__(230);
+	__webpack_require__(239);
 	
 	var routes = React.createElement(
 	    Router,
@@ -61,14 +61,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 208:
+/***/ 210:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	var History = ReactRouter.History;
 	
-	var auth = __webpack_require__(209);
+	var auth = __webpack_require__(211);
 	
 	// Top-level component for the app
 	var App = React.createClass({
@@ -208,10 +208,10 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 209:
+/***/ 211:
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(210);
+	var $ = __webpack_require__(212);
 	
 	// authentication object
 	var auth = {
@@ -304,12 +304,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 211:
+/***/ 213:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
-	var SearchBar = __webpack_require__(212);
+	var SearchBar = __webpack_require__(214);
 	//var BackgroundImage = require("./backgroundimage.js");
 	
 	var HomePage = React.createClass({
@@ -329,7 +329,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 212:
+/***/ 214:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -365,22 +365,21 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 213:
+/***/ 215:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	var LibraryHeader = __webpack_require__(214);
-	var ListEntry = __webpack_require__(216);
-	var ListItems = __webpack_require__(217);
+	var LibraryHeader = __webpack_require__(216);
+	var ListItems = __webpack_require__(218);
 	
-	var api = __webpack_require__(215);
-	var auth = __webpack_require__(209);
+	var api = __webpack_require__(217);
+	var auth = __webpack_require__(211);
 	
-	// List page, shows the todo list of items
-	var List = React.createClass({
-	    displayName: "List",
+	// Library list page, show items checked out
+	var LibraryItemList = React.createClass({
+	    displayName: "LibraryItemList",
 	
 	    // context so the component can access the router
 	    contextTypes: {
@@ -390,7 +389,8 @@ webpackJsonp([1],{
 	    // initial state
 	    getInitialState: function () {
 	        return {
-	            // list of items in the todo list
+	            // list of items "checked out"
+	            new_items: [],
 	            items: []
 	        };
 	    },
@@ -420,31 +420,55 @@ webpackJsonp([1],{
 	
 	    // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
 	    render: function () {
-	        var name = auth.getName();
+	        var createItem = function (item) {
+	            return React.createElement(
+	                "div",
+	                null,
+	                React.createElement(
+	                    "li",
+	                    null,
+	                    React.createElement(
+	                        "a",
+	                        { href: item },
+	                        item
+	                    ),
+	                    React.createElement(
+	                        "button",
+	                        { type: "button", className: "btn btn-primary btn-sm" },
+	                        React.createElement("span", { className: "glyphicon glyphicon-plus" })
+	                    )
+	                )
+	            );
+	        };
 	        return React.createElement(
-	            "section",
-	            { id: "todoapp" },
-	            React.createElement(LibraryHeader, { name: name, items: this.state.items, reload: this.reload }),
-	            React.createElement(
-	                "section",
-	                { id: "main" },
-	                React.createElement(ListEntry, { reload: this.reload }),
-	                React.createElement(ListItems, { items: this.state.items, reload: this.reload })
-	            )
+	            "ul",
+	            null,
+	            this.props.new_items.map(createItem)
 	        );
+	        /*
+	         var name = auth.getName();
+	          return(
+	         <section id="todoapp">
+	         <LibraryHeader name={name} items={this.state.items} reload={this.reload} />
+	         <section id="main">
+	         <ListItems items={this.state.items} reload={this.reload}/>
+	         </section>
+	         </section>
+	         );
+	         */
 	    }
 	});
 	
-	module.exports = List;
+	module.exports = LibraryItemList;
 
 /***/ },
 
-/***/ 214:
+/***/ 216:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	
-	var api = __webpack_require__(215);
+	var api = __webpack_require__(217);
 	
 	// List header, which shows who the list is for, the number of items in the list, and a button to clear completed items
 	var LibraryHeader = React.createClass({
@@ -524,10 +548,10 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 215:
+/***/ 217:
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(210);
+	var $ = __webpack_require__(212);
 	
 	// API object
 	var api = {
@@ -620,57 +644,14 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 216:
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	
-	var api = __webpack_require__(215);
-	
-	// List entry component, handles adding new items to the list
-	var ListEntry = React.createClass({
-	    displayName: "ListEntry",
-	
-	    // handles submit event for adding a new item
-	    addItem: function (event) {
-	        // prevent default browser submit
-	        event.preventDefault();
-	        // get data from form
-	        var title = this.refs.title.value;
-	        if (!title) {
-	            return;
-	        }
-	        // call API to add item, and reload once added
-	        api.addItem(title, this.props.reload);
-	        this.refs.title.value = '';
-	    },
-	
-	    // render the item entry area
-	    render: function () {
-	        return React.createElement(
-	            "header",
-	            { id: "input" },
-	            React.createElement(
-	                "form",
-	                { id: "item-form", name: "itemForm", onSubmit: this.addItem },
-	                React.createElement("input", { type: "text", id: "new-item", ref: "title", placeholder: "Enter a new item", autoFocus: true })
-	            )
-	        );
-	    }
-	});
-	
-	module.exports = ListEntry;
-
-/***/ },
-
-/***/ 217:
+/***/ 218:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	
-	var Item = __webpack_require__(218);
-	var LibraryItem = __webpack_require__(219);
+	var Item = __webpack_require__(219);
+	var LibraryItem = __webpack_require__(220);
 	
 	// List items component, shows the list of items
 	var ListItems = React.createClass({
@@ -717,12 +698,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 218:
+/***/ 219:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	
-	var api = __webpack_require__(215);
+	var api = __webpack_require__(217);
 	
 	// Item shown in the todo list
 	var Item = React.createClass({
@@ -827,12 +808,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 219:
+/***/ 220:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	
-	var api = __webpack_require__(215);
+	var api = __webpack_require__(217);
 	
 	// Item shown in the todo list
 	var LibraryItem = React.createClass({
@@ -947,317 +928,13 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 220:
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(159);
-	
-	var LibraryHeader = __webpack_require__(214);
-	var ListItems = __webpack_require__(217);
-	
-	var api = __webpack_require__(215);
-	var auth = __webpack_require__(209);
-	
-	// Library list page, show items checked out
-	var LibraryItemList = React.createClass({
-	    displayName: "LibraryItemList",
-	
-	    // context so the component can access the router
-	    contextTypes: {
-	        location: React.PropTypes.object
-	    },
-	
-	    // initial state
-	    getInitialState: function () {
-	        return {
-	            // list of items "checked out"
-	            new_items: [],
-	            items: []
-	        };
-	    },
-	
-	    // when the component loads, get the list items
-	    componentDidMount: function () {
-	        api.getItems(this.listSet);
-	    },
-	
-	    // reload the list of items
-	    reload: function () {
-	        api.getItems(this.listSet);
-	    },
-	
-	    // callback for getting the list of items, sets the list state
-	    listSet: function (status, data) {
-	        if (status) {
-	            // set the state for the list of items
-	            this.setState({
-	                items: data.items
-	            });
-	        } else {
-	            // if the API call fails, redirect to the login page
-	            this.context.router.transitionTo('/login');
-	        }
-	    },
-	
-	    // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
-	    render: function () {
-	        var createItem = function (item) {
-	            return React.createElement(
-	                "div",
-	                null,
-	                React.createElement(
-	                    "li",
-	                    null,
-	                    React.createElement(
-	                        "a",
-	                        { href: item },
-	                        item
-	                    ),
-	                    React.createElement(
-	                        "button",
-	                        { type: "button", className: "btn btn-primary btn-sm" },
-	                        React.createElement("span", { className: "glyphicon glyphicon-plus" })
-	                    )
-	                )
-	            );
-	        };
-	        return React.createElement(
-	            "ul",
-	            null,
-	            this.props.new_items.map(createItem)
-	        );
-	        /*
-	         var name = auth.getName();
-	          return(
-	         <section id="todoapp">
-	         <LibraryHeader name={name} items={this.state.items} reload={this.reload} />
-	         <section id="main">
-	         <ListItems items={this.state.items} reload={this.reload}/>
-	         </section>
-	         </section>
-	         );
-	         */
-	    }
-	});
-	
-	module.exports = LibraryItemList;
-
-/***/ },
-
 /***/ 221:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
-	
-	var LibraryHeader = __webpack_require__(214);
-	var LibraryItemList = __webpack_require__(220);
-	var SearchBar = __webpack_require__(212);
-	
-	var LibraryPage = React.createClass({
-	    displayName: "LibraryPage",
-	
-	    render: function () {
-	        return React.createElement(
-	            "div",
-	            null,
-	            React.createElement(SearchBar, null),
-	            React.createElement(LibraryItemList, {
-	                new_items: ["http://www.google.com", "http://www.facebook.com", "http://www.galaxyquest.com"] })
-	        );
-	    }
-	});
-	
-	module.exports = LibraryPage;
-
-/***/ },
-
-/***/ 222:
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(159);
-	var History = ReactRouter.History;
-	
-	var auth = __webpack_require__(209);
-	
-	// Login page, shows the login form and redirects to the list if login is successful
-	var Login = React.createClass({
-	    displayName: "Login",
-	
-	    // mixin for navigation
-	    mixins: [History],
-	
-	    // initial state
-	    getInitialState: function () {
-	        return {
-	            // there was an error on logging in
-	            error: false
-	        };
-	    },
-	
-	    // handle login button submit
-	    login: function (event) {
-	        // prevent default browser submit
-	        event.preventDefault();
-	        // get data from form
-	        var username = this.refs.username.value;
-	        var password = this.refs.password.value;
-	        if (!username || !password) {
-	            return;
-	        }
-	        // login via API
-	        auth.login(username, password, (function (loggedIn) {
-	            // login callback
-	            if (!loggedIn) return this.setState({
-	                error: true
-	            });
-	            this.history.pushState(null, '/');
-	        }).bind(this));
-	    },
-	
-	    // show the login form
-	    render: function () {
-	        return React.createElement(
-	            "div",
-	            { className: "center-content" },
-	            React.createElement(
-	                "h2",
-	                null,
-	                "Login"
-	            ),
-	            React.createElement(
-	                "form",
-	                { className: "form", onSubmit: this.login },
-	                React.createElement(
-	                    "div",
-	                    { className: "form-group" },
-	                    React.createElement(
-	                        "label",
-	                        { "for": "username" },
-	                        "Username: "
-	                    ),
-	                    React.createElement("input", { type: "text", className: "form-control", id: "username", placeholder: "Username", ref: "username",
-	                        autoFocus: true })
-	                ),
-	                React.createElement(
-	                    "div",
-	                    { className: "form-group" },
-	                    React.createElement(
-	                        "label",
-	                        { "for": "password" },
-	                        "Password: "
-	                    ),
-	                    React.createElement("input", { type: "password", className: "form-control", id: "password", placeholder: "Password",
-	                        ref: "password" })
-	                ),
-	                React.createElement(
-	                    "div",
-	                    { className: "form-group" },
-	                    React.createElement("input", { className: "btn btn-primary", type: "submit", value: "Login" })
-	                ),
-	                this.state.error ? React.createElement(
-	                    "div",
-	                    { className: "alert" },
-	                    "Invalid username or password ya filthy animal."
-	                ) : null
-	            )
-	        );
-	    }
-	});
-	
-	module.exports = Login;
-
-/***/ },
-
-/***/ 223:
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(159);
-	var History = ReactRouter.History;
-	
-	var auth = __webpack_require__(209);
-	
-	// Register page, shows the registration form and redirects to the list if login is successful
-	var Register = React.createClass({
-	    displayName: "Register",
-	
-	    // mixin for navigation
-	    mixins: [History],
-	
-	    // initial state
-	    getInitialState: function () {
-	        return {
-	            // there was an error registering
-	            error: false
-	        };
-	    },
-	
-	    // handle regiser button submit
-	    register: function (event) {
-	        // prevent default browser submit
-	        event.preventDefault();
-	        // get data from form
-	        var name = this.refs.name.value;
-	        var username = this.refs.username.value;
-	        var password = this.refs.password.value;
-	        if (!name || !username || !password) {
-	            return;
-	        }
-	        // register via the API
-	        auth.register(name, username, password, (function (loggedIn) {
-	            // register callback
-	            if (!loggedIn) return this.setState({
-	                error: true
-	            });
-	            this.history.pushState(null, '/list');
-	        }).bind(this));
-	    },
-	
-	    // show the registration form
-	    render: function () {
-	        return React.createElement(
-	            "div",
-	            null,
-	            React.createElement(
-	                "h2",
-	                null,
-	                "Register"
-	            ),
-	            React.createElement(
-	                "form",
-	                { className: "form", onSubmit: this.register },
-	                React.createElement(
-	                    "div",
-	                    { className: "form-group" },
-	                    React.createElement("input", { type: "text", placeholder: "Name", ref: "name", autoFocus: true }),
-	                    React.createElement("input", { type: "text", placeholder: "Username", ref: "username" }),
-	                    React.createElement("input", { type: "password", placeholder: "Password", ref: "password" }),
-	                    React.createElement("input", { className: "btn", type: "submit", value: "Register" }),
-	                    this.state.error ? React.createElement(
-	                        "div",
-	                        { className: "alert" },
-	                        "Invalid username or password."
-	                    ) : null
-	                )
-	            )
-	        );
-	    }
-	});
-	
-	module.exports = Register;
-
-/***/ },
-
-/***/ 224:
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(159);
-	var AboutTheBook = __webpack_require__(225);
-	var AboutYou = __webpack_require__(226);
+	var AboutTheBook = __webpack_require__(222);
+	var AboutYou = __webpack_require__(223);
 	
 	var SubmitResourcePage = React.createClass({
 	    displayName: "SubmitResourcePage",
@@ -1281,7 +958,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 225:
+/***/ 222:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -1333,7 +1010,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 226:
+/***/ 223:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -1405,27 +1082,13 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 227:
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ 236:
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ 238:
+/***/ 224:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
-	var Login = __webpack_require__(222);
-	var Register = __webpack_require__(223);
+	var Login = __webpack_require__(225);
+	var Register = __webpack_require__(226);
 	
 	var SearchBar = React.createClass({
 	    displayName: "SearchBar",
@@ -1436,12 +1099,12 @@ webpackJsonp([1],{
 	            null,
 	            React.createElement(
 	                "div",
-	                { className: "login-column col-md-4" },
+	                { className: "center-content" },
 	                React.createElement(Login, null)
 	            ),
 	            React.createElement(
 	                "div",
-	                { className: "register-column col-md-4" },
+	                { className: "center-content" },
 	                React.createElement(Register, null)
 	            )
 	        );
@@ -1449,6 +1112,361 @@ webpackJsonp([1],{
 	});
 	
 	module.exports = SearchBar;
+
+/***/ },
+
+/***/ 225:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(159);
+	var History = ReactRouter.History;
+	
+	var auth = __webpack_require__(211);
+	
+	// Login page, shows the login form and redirects to the list if login is successful
+	var Login = React.createClass({
+	    displayName: "Login",
+	
+	    // mixin for navigation
+	    mixins: [History],
+	
+	    // initial state
+	    getInitialState: function () {
+	        return {
+	            // there was an error on logging in
+	            error: false
+	        };
+	    },
+	
+	    // handle login button submit
+	    login: function (event) {
+	        // prevent default browser submit
+	        event.preventDefault();
+	        // get data from form
+	        var username = this.refs.username.value;
+	        var password = this.refs.password.value;
+	        if (!username || !password) {
+	            return;
+	        }
+	        // login via API
+	        auth.login(username, password, (function (loggedIn) {
+	            // login callback
+	            if (!loggedIn) return this.setState({
+	                error: true
+	            });
+	            this.history.pushState(null, '/');
+	        }).bind(this));
+	    },
+	
+	    // show the login form
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(
+	                "h2",
+	                null,
+	                "Login"
+	            ),
+	            React.createElement(
+	                "form",
+	                { className: "form", onSubmit: this.login },
+	                React.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    React.createElement(
+	                        "label",
+	                        { "for": "username" },
+	                        "Username: "
+	                    ),
+	                    React.createElement("input", { type: "text", className: "form-control", id: "username", placeholder: "Username", ref: "username",
+	                        autoFocus: true })
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    React.createElement(
+	                        "label",
+	                        { "for": "password" },
+	                        "Password: "
+	                    ),
+	                    React.createElement("input", { type: "password", className: "form-control", id: "password", placeholder: "Password",
+	                        ref: "password" })
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    React.createElement("input", { className: "btn btn-primary", type: "submit", value: "Login" })
+	                ),
+	                this.state.error ? React.createElement(
+	                    "div",
+	                    { className: "alert" },
+	                    "Invalid username or password ya filthy animal."
+	                ) : null
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = Login;
+
+/***/ },
+
+/***/ 226:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(159);
+	var History = ReactRouter.History;
+	
+	var auth = __webpack_require__(211);
+	
+	// Register page, shows the registration form and redirects to the list if login is successful
+	var Register = React.createClass({
+	    displayName: "Register",
+	
+	    // mixin for navigation
+	    mixins: [History],
+	
+	    // initial state
+	    getInitialState: function () {
+	        return {
+	            // there was an error registering
+	            error: false
+	        };
+	    },
+	
+	    // handle regiser button submit
+	    register: function (event) {
+	        // prevent default browser submit
+	        event.preventDefault();
+	        // get data from form
+	        var name = this.refs.name.value;
+	        var username = this.refs.username.value;
+	        var password = this.refs.password.value;
+	        if (!name || !username || !password) {
+	            return;
+	        }
+	        // register via the API
+	        auth.register(name, username, password, (function (loggedIn) {
+	            // register callback
+	            if (!loggedIn) return this.setState({
+	                error: true
+	            });
+	            this.history.pushState(null, '/list');
+	        }).bind(this));
+	    },
+	
+	    // show the registration form
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(
+	                "h2",
+	                null,
+	                "Register"
+	            ),
+	            React.createElement(
+	                "form",
+	                { className: "form", onSubmit: this.register },
+	                React.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    React.createElement(
+	                        "label",
+	                        { "for": "username" },
+	                        "Username: "
+	                    ),
+	                    React.createElement("input", { type: "text", className: "form-control", id: "username", placeholder: "Username", ref: "username" })
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    React.createElement(
+	                        "label",
+	                        { "for": "password" },
+	                        "Password: "
+	                    ),
+	                    React.createElement("input", { type: "password", className: "form-control", id: "password", placeholder: "Password",
+	                        ref: "password" })
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    React.createElement("input", { className: "btn btn-primary", type: "submit", value: "Register" })
+	                ),
+	                this.state.error ? React.createElement(
+	                    "div",
+	                    { className: "alert" },
+	                    "Invalid username or password ya filthy animal."
+	                ) : null
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = Register;
+
+/***/ },
+
+/***/ 227:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(159);
+	
+	var LibraryHeader = __webpack_require__(216);
+	var ListEntry = __webpack_require__(228);
+	var ListItems = __webpack_require__(218);
+	
+	var api = __webpack_require__(217);
+	var auth = __webpack_require__(211);
+	
+	// List page, shows the todo list of items
+	var List = React.createClass({
+	    displayName: "List",
+	
+	    // context so the component can access the router
+	    contextTypes: {
+	        location: React.PropTypes.object
+	    },
+	
+	    // initial state
+	    getInitialState: function () {
+	        return {
+	            // list of items in the todo list
+	            items: []
+	        };
+	    },
+	
+	    // when the component loads, get the list items
+	    componentDidMount: function () {
+	        api.getItems(this.listSet);
+	    },
+	
+	    // reload the list of items
+	    reload: function () {
+	        api.getItems(this.listSet);
+	    },
+	
+	    // callback for getting the list of items, sets the list state
+	    listSet: function (status, data) {
+	        if (status) {
+	            // set the state for the list of items
+	            this.setState({
+	                items: data.items
+	            });
+	        } else {
+	            // if the API call fails, redirect to the login page
+	            this.context.router.transitionTo('/login');
+	        }
+	    },
+	
+	    // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
+	    render: function () {
+	        var name = auth.getName();
+	        return React.createElement(
+	            "section",
+	            { id: "todoapp" },
+	            React.createElement(LibraryHeader, { name: name, items: this.state.items, reload: this.reload }),
+	            React.createElement(
+	                "section",
+	                { id: "main" },
+	                React.createElement(ListEntry, { reload: this.reload }),
+	                React.createElement(ListItems, { items: this.state.items, reload: this.reload })
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = List;
+
+/***/ },
+
+/***/ 228:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var api = __webpack_require__(217);
+	
+	// List entry component, handles adding new items to the list
+	var ListEntry = React.createClass({
+	    displayName: "ListEntry",
+	
+	    // handles submit event for adding a new item
+	    addItem: function (event) {
+	        // prevent default browser submit
+	        event.preventDefault();
+	        // get data from form
+	        var title = this.refs.title.value;
+	        if (!title) {
+	            return;
+	        }
+	        // call API to add item, and reload once added
+	        api.addItem(title, this.props.reload);
+	        this.refs.title.value = '';
+	    },
+	
+	    // render the item entry area
+	    render: function () {
+	        return React.createElement(
+	            "header",
+	            { id: "input" },
+	            React.createElement(
+	                "form",
+	                { id: "item-form", name: "itemForm", onSubmit: this.addItem },
+	                React.createElement("input", { type: "text", id: "new-item", ref: "title", placeholder: "Enter a new item", autoFocus: true })
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = ListEntry;
+
+/***/ },
+
+/***/ 229:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(159);
+	
+	var LibraryHeader = __webpack_require__(216);
+	var LibraryItemList = __webpack_require__(215);
+	var SearchBar = __webpack_require__(214);
+	
+	var LibraryPage = React.createClass({
+	    displayName: "LibraryPage",
+	
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(SearchBar, null),
+	            React.createElement(LibraryItemList, {
+	                new_items: ["http://www.google.com", "http://www.facebook.com", "http://www.galaxyquest.com"] })
+	        );
+	    }
+	});
+	
+	module.exports = LibraryPage;
+
+/***/ },
+
+/***/ 230:
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ 239:
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 
