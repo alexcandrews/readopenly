@@ -20,8 +20,8 @@ webpackJsonp([1],{
 	var Register = __webpack_require__(225);
 	var SubmitResourcePage = __webpack_require__(226);
 	
-	__webpack_require__(227);
-	__webpack_require__(236);
+	__webpack_require__(228);
+	__webpack_require__(237);
 	
 	var routes = React.createElement(
 	  Router,
@@ -153,7 +153,7 @@ webpackJsonp([1],{
 	                React.createElement(
 	                  "a",
 	                  { href: "#/submitresourcepage" },
-	                  "Submit Resource"
+	                  "Submit a Resource"
 	                )
 	              ),
 	              React.createElement(
@@ -1250,6 +1250,7 @@ webpackJsonp([1],{
 
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
+	var AboutTheBook = __webpack_require__(227);
 	
 	var SubmitResourcePage = React.createClass({
 	    displayName: "SubmitResourcePage",
@@ -1258,11 +1259,7 @@ webpackJsonp([1],{
 	        return React.createElement(
 	            "div",
 	            null,
-	            React.createElement(
-	                "p",
-	                null,
-	                "hello world"
-	            )
+	            React.createElement(AboutTheBook, null)
 	        );
 	    }
 	});
@@ -1272,13 +1269,63 @@ webpackJsonp([1],{
 /***/ },
 
 /***/ 227:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(159);
+	
+	var AboutTheBook = React.createClass({
+	    displayName: "AboutTheBook",
+	
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(
+	                "h2",
+	                null,
+	                "About The Book:"
+	            ),
+	            React.createElement(
+	                "form",
+	                { className: "form-inline" },
+	                React.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    React.createElement(
+	                        "label",
+	                        { "for": "nameOfBook" },
+	                        "Name of the Book: "
+	                    ),
+	                    React.createElement("input", { type: "text", className: "form-control", id: "nameOfBook", placeholder: "Book Title", ref: "nameOfBook", autoFocus: true })
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    React.createElement(
+	                        "label",
+	                        { "for": "URLtoBook" },
+	                        "URL to Book: "
+	                    ),
+	                    React.createElement("input", { type: "text", className: "form-control", id: "URLtoBook", placeholder: "http://book...", ref: "URLtoBook" })
+	                )
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = AboutTheBook;
+
+/***/ },
+
+/***/ 228:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 236:
+/***/ 237:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
