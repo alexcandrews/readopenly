@@ -46,6 +46,10 @@ var Register = React.createClass({
                 <h2>Register</h2>
                 <form className="form" onSubmit={this.register}>
                     <div className="form-group">
+                        <label for="name">Name: </label>
+                        <input type="text" className="form-control" id="name" placeholder="Name" ref="name"/>
+                    </div>
+                    <div className="form-group">
                         <label for="username">Username: </label>
                         <input type="text" className="form-control" id="username" placeholder="Username" ref="username"/>
                     </div>

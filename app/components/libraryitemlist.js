@@ -50,7 +50,7 @@ var LibraryItemList = React.createClass({
     render: function () {
         var createItem = function (item) {
             return (
-                <div>
+                <div className="center-content">
                     <li><a href={item}>{item}</a>
                         <button type="button" className="btn btn-primary btn-sm">
                             <span className="glyphicon glyphicon-plus"></span>

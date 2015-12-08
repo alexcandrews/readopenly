@@ -11,6 +11,6 @@ var libraryItemSchema = new Schema(
 );
 
 // create library item
-var LibraryItem = mongoose.model('users', libraryItemSchema);
+var LibraryItem = mongoose.model('libraryitem', libraryItemSchema);
 
 module.exports = LibraryItem;

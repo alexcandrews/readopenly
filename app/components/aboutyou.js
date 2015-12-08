@@ -12,7 +12,7 @@ var AboutYou = React.createClass({
                         <input type="text" className="form-control" id="name" placeholder="Jon Doe" ref="name"/>
                     </div>
                     <div className="form-group">
-                        <label for="email">URL to Book: </label>
+                        <label for="email">Your email: </label>
                         <input type="text" className="form-control" id="email" placeholder="youremail@email.com"
                                ref="email"/>
                     </div>
