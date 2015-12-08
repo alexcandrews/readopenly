@@ -25,11 +25,15 @@ html {
     min-height: 50%;
 }
 
-.submit-resource-page-left-column {
+.center-content {
     width: 33%;
+    margin: auto;
 }
 
-.submit-resource-page-right-column {
+.login-column {
+    width: 33%;
+}
+.register-column {
     width: 33%;
 }
 

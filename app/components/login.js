@@ -42,9 +42,9 @@ var Login = React.createClass({
     // show the login form
     render: function () {
         return (
-            <div>
+            <div className="center-content">
                 <h2>Login</h2>
-                <form className="form-inline" onSubmit={this.login}>
+                <form className="form" onSubmit={this.login}>
                     <div className="form-group">
                         <label for="username">Username: </label>
                         <input type="text" className="form-control" id="username" placeholder="Username" ref="username"

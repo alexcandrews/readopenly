@@ -8,12 +8,13 @@ var IndexRoute = ReactRouter.IndexRoute;
 
 var App = require("./app.js");
 var HomePage = require("./homepage.js");
-var List = require("./list.js");
 var LibraryItemList = require("./libraryitemlist.js");
+var SubmitResourcePage = require("./submitresourcepage");
+var LoginOrRegisterPage = require("./loginorregisterpage.js");
+var List = require("./list.js");
 var LibraryPage = require("./librarypage.js");
 var Login = require("./login.js");
 var Register = require("./register.js");
-var SubmitResourcePage = require("./submitresourcepage");
 
 require("../../node_modules/bootstrap/dist/css/bootstrap.min.css");
 require("../css/app.css");
@@ -24,6 +25,7 @@ var routes = (
             <IndexRoute component={HomePage}/>
             <Route name="librarypage" path="/librarypage" component={LibraryPage}/>
             <Route name="submitresourcepage" path="/submitresourcepage" component={SubmitResourcePage}/>
+            <Route name="loginorregisterpage" path="/loginorregisterpage" component={LoginOrRegisterPage}/>
             <Route name="list" path="/list" component={List}/>
             <Route name="libraryitemlist" path="/libraryitemlist" component={LibraryItemList}/>
             <Route name="login" path="/login" component={Login}/>

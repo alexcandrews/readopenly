@@ -61,8 +61,7 @@ var App = React.createClass({
                                 (
                                     <div>
                                         <ul className="nav navbar-nav navbar-right">
-                                            <li><a href="#/login">Login</a></li>
-                                            <li><a href="#/register">Register</a></li>
+                                            <li><a href="#/loginorregisterpage">Login|Register</a></li>
                                         </ul>
                                     </div>
                                 )
@@ -85,5 +84,5 @@ module.exports = App;
  <li><a href="#/list">All</a></li>
  <li><a href="#/list/active">Active</a></li>
  <li><a href="#/list/completed">Completed</a></li>
-
+ <li><a href="#/register">Register</a></li>
  */
