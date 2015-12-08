@@ -1261,7 +1261,12 @@ webpackJsonp([1],{
 	            "div",
 	            null,
 	            React.createElement(AboutTheBook, null),
-	            React.createElement(AboutYou, null)
+	            React.createElement(AboutYou, null),
+	            React.createElement(
+	                "button",
+	                { type: "submit", "class": "btn btn-primary" },
+	                "Submit Resource!"
+	            )
 	        );
 	    }
 	});
@@ -1340,7 +1345,7 @@ webpackJsonp([1],{
 	            ),
 	            React.createElement(
 	                "form",
-	                { className: "form-inline" },
+	                { className: "form" },
 	                React.createElement(
 	                    "div",
 	                    { className: "form-group" },
