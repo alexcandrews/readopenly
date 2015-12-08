@@ -1264,7 +1264,7 @@ webpackJsonp([1],{
 	            React.createElement(AboutYou, null),
 	            React.createElement(
 	                "button",
-	                { type: "submit", "class": "btn btn-primary" },
+	                { type: "submit", className: "btn btn-primary" },
 	                "Submit Resource!"
 	            )
 	        );
