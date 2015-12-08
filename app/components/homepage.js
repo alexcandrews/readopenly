@@ -12,6 +12,7 @@ var HomePage = React.createClass({
         </div>
     );
   }
+
 });
 
 module.exports = HomePage;

@@ -4,7 +4,7 @@ var AboutTheBook = require("./aboutthebook.js");
 var AboutYou = require("./aboutyou.js");
 
 var SubmitResourcePage = React.createClass({
-    render: function() {
+    render: function () {
         return (
             <div>
                 <div className="submit-resource-page-left-column col-xs-6 col-sm-4">

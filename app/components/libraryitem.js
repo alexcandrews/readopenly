@@ -22,16 +22,16 @@ var LibraryItem = React.createClass({
         }
     },
     // when the item is completed, toggle its state and update it
-    toggleCompleted: function() {
+    toggleCompleted: function () {
         this.props.item.completed = !this.props.item.completed;
         api.updateItem(this.props.item, this.props.reload);
     },
     // called when the delete button is clicked for this item
-    deleteItem: function() {
+    deleteItem: function () {
         api.deleteItem(this.props.item, this.props.reload);
     },
     // called when the item is double-clicked
-    editItem: function() {
+    editItem: function () {
         this.setState({editing: true, editText: this.props.item.title});
     },
     // called when the item is changed
@@ -39,7 +39,7 @@ var LibraryItem = React.createClass({
         this.setState({editText: event.target.value});
     },
     // called when the enter key is entered after the item is edited
-    saveItem: function(event) {
+    saveItem: function (event) {
         if (!this.state.editing) {
             return;
         }
@@ -51,7 +51,7 @@ var LibraryItem = React.createClass({
             api.updateItem(this.props.item, this.props.reload);
         } else {
             // delete the item if there is no text left any more
-            api.deleteItem(this.props.item,this.props.reload);
+            api.deleteItem(this.props.item, this.props.reload);
         }
     },
     // called when a key is pressed
@@ -67,7 +67,7 @@ var LibraryItem = React.createClass({
         }
     },
     // render the Item
-    render: function() {
+    render: function () {
         // construct a list of classes for the item CSS
         var classes = "";
         if (this.props.item.completed) {
@@ -90,14 +90,14 @@ var LibraryItem = React.createClass({
 
 module.exports = LibraryItem;
 
-            /*
-             <li className={classes}>
-             <div className="view">
-             <input id={this.props.item.id} className="toggle" type="checkbox" onChange={this.toggleCompleted.bind(this,this.props.item)} checked={this.props.item.completed} />
-             <label className="check" htmlFor={this.props.item.id}/>
-             <label onDoubleClick={this.editItem}>{this.props.item.title}</label>
-             <button className="destroy" onClick={this.deleteItem}></button>
-             </div>
-             <input ref="editField" className="edit" onKeyDown={this.handleKeyDown} onChange={this.changeItem} onSubmit={this.saveItem} onBlur={this.saveItem} value={this.state.editText} />
-             </li>
-             */
+/*
+ <li className={classes}>
+ <div className="view">
+ <input id={this.props.item.id} className="toggle" type="checkbox" onChange={this.toggleCompleted.bind(this,this.props.item)} checked={this.props.item.completed} />
+ <label className="check" htmlFor={this.props.item.id}/>
+ <label onDoubleClick={this.editItem}>{this.props.item.title}</label>
+ <button className="destroy" onClick={this.deleteItem}></button>
+ </div>
+ <input ref="editField" className="edit" onKeyDown={this.handleKeyDown} onChange={this.changeItem} onSubmit={this.saveItem} onBlur={this.saveItem} value={this.state.editText} />
+ </li>
+ */

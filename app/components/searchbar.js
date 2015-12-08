@@ -2,20 +2,21 @@ var React = require("react");
 var ReactRouter = require("react-router");
 
 var SearchBar = React.createClass({
-    getInitialState: function() {
+    getInitialState: function () {
         return {value: ''};
     },
-    handleChange: function(event) {
+    handleChange: function (event) {
         this.setState({value: event.target.value});
     },
 
-    render: function() {
+    render: function () {
         var value = this.state.value;
         return (
             <div>
                 <center>
-                    <input type="text" className="form-control" placeholder="what do you want to learn?" value={value} onChange={this.handleChange} />
-                    <input className="btn btn-primary" type="submit" value="?" />
+                    <input type="text" className="form-control" placeholder="what do you want to learn?" value={value}
+                           onChange={this.handleChange}/>
+                    <input className="btn btn-primary" type="submit" value="?"/>
                 </center>
             </div>
         );

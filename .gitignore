@@ -1,5 +1,8 @@
-#####=== Node ===#####
+#####=== Project Specific ===#####
+.publish/
+public/
 
+#####=== Node ===#####
 # Logs
 logs
 *.log
@@ -38,8 +41,6 @@ npm-debug.log
 Session.vim
 .netrwhist
 *~
-.publish/
-public/
 
 #####=== JetBrains ===#####
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm

@@ -10,9 +10,9 @@ var LibraryItems = React.createClass({
         location: React.PropTypes.object
     },
     // render the list of items
-    render: function() {
+    render: function () {
         // get list of items to show, using the path to the current page
-        var shown = this.props.items.filter(function(item) {
+        var shown = this.props.items.filter(function (item) {
             switch (this.context.location.pathname) {
                 case '/list/active':
                     return !item.completed;
@@ -24,7 +24,7 @@ var LibraryItems = React.createClass({
         }, this);
 
         // using the list of items, generate an Item element for each one
-        var list = shown.map(function(item) {
+        var list = shown.map(function (item) {
             return (
                 <Item key={item.id} item={item} reload={this.props.reload}/>
             );
