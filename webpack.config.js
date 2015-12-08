@@ -37,7 +37,7 @@ module.exports = {
             // loader for images
             {
                 test: /\.(png|jpg|jpeg)$/,
-                loader: "file-loader",
+                loader: "file?name=[name].[ext]",
             },
             // loaders for Bootstrap CSS
             {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap")},
