@@ -7,27 +7,29 @@ var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 
 var App = require("./app.js");
-var Home = require("./homepage.js");
+var HomePage = require("./homepage.js");
 var List = require("./list.js");
 var LibraryItemList = require("./libraryitemlist.js");
 var LibraryPage = require("./librarypage.js");
 var Login = require("./login.js");
 var Register = require("./register.js");
+var SubmitResourcePage = require("./submitresourcepage");
 
 require("../../node_modules/bootstrap/dist/css/bootstrap.min.css");
 require("../css/app.css");
 
 var routes = (
-  <Router>
-    <Route name="app" path="/" component ={App}>
-      <IndexRoute component = {Home} />
-      <Route name="libraryitemlist" path="/libraryitemlist" component={LibraryItemList} />
-      <Route name="librarypage" path="/librarypage" component={LibraryPage} />
-      <Route name="list" path="/list" component={List} />
-      <Route name="login" path="/login" component={Login} />
-      <Route name="register" path="/register" component={Register} />
-    </Route>
-  </Router>
+    <Router>
+      <Route name="app" path="/" component ={App}>
+        <IndexRoute component = {HomePage} />
+        <Route name="librarypage" path="/librarypage" component={LibraryPage} />
+        <Route name="submitresourcepage" path="/submitresourcepage" component={SubmitResourcePage} />
+        <Route name="list" path="/list" component={List} />
+        <Route name="libraryitemlist" path="/libraryitemlist" component={LibraryItemList} />
+        <Route name="login" path="/login" component={Login} />
+        <Route name="register" path="/register" component={Register} />
+      </Route>
+    </Router>
 );
 
 ReactDOM.render(routes, document.getElementById('content'));

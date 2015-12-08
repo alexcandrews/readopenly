@@ -18,6 +18,7 @@ var LibraryItemList = React.createClass({
     getInitialState: function() {
         return {
             // list of items "checked out"
+            new_items: [],
             items: [],
         };
     },
@@ -47,7 +48,21 @@ var LibraryItemList = React.createClass({
 
     // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
     render: function() {
+        var createItem = function(item) {
+            return (
+                <div>
+                    <li><a href={item}>{item}</a>
+                        <button type="button" className="btn btn-primary btn-sm">
+                            <span className="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </li>
+                </div>
+            );
+        };
+        return <ul>{this.props.new_items.map(createItem)}</ul>;
+        /*
         var name = auth.getName();
+
         return(
             <section id="todoapp">
                 <LibraryHeader name={name} items={this.state.items} reload={this.reload} />
@@ -56,6 +71,7 @@ var LibraryItemList = React.createClass({
                 </section>
             </section>
         );
+        */
     }
 });
 

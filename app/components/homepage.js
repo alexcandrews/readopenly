@@ -4,7 +4,7 @@ var SearchBar = require("./searchbar.js");
 
 var Link = ReactRouter.Link;
 
-var Home = React.createClass({
+var HomePage = React.createClass({
   render: function() {
     return (
       <div>
@@ -14,4 +14,4 @@ var Home = React.createClass({
   }
 });
 
-module.exports = Home;
+module.exports = HomePage;

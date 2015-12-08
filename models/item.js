@@ -2,9 +2,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
-var findOrCreate = require('mongoose-findorcreate')
+var findOrCreate = require('mongoose-findorcreate');
 
-  var User = require('./user.js');
+var User = require('./user.js');
 
 // Item schema
 var itemSchema = new Schema({

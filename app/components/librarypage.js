@@ -10,7 +10,7 @@ var LibraryPage = React.createClass({
         return(
             <div>
                 <SearchBar />
-                <LibraryItemList />
+                <LibraryItemList new_items={["http://www.google.com", "http://www.facebook.com","http://www.galaxyquest.com"]}/>
             </div>
         );
     }

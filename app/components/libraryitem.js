@@ -3,7 +3,7 @@ var React = require("react");
 var api = require("./api.js");
 
 // Item shown in the todo list
-var LirbraryItem = React.createClass({
+var LibraryItem = React.createClass({
     // initial state
     getInitialState: function () {
         return {
@@ -78,7 +78,11 @@ var LirbraryItem = React.createClass({
         }
         return (
             <div>
-                <a href="www.google.com">ITEM</a>
+                <li key={item.id}><a href={item}>{item}</a>
+                    <button type="button" className="btn btn-primary btn-sm">
+                        <span className="glyphicon glyphicon-plus"></span>
+                    </button>
+                </li>
             </div>
         );
     }

@@ -53,6 +53,7 @@ var App = React.createClass({
               {this.state.loggedIn ? (
                  <ul className="nav navbar-nav navbar-right">
                    <li><a href="#/librarypage">Library</a></li>
+                   <li><a href="#/submitresourcepage">Submit a Resource</a></li>
                    <li><a href="#" onClick={this.logout}>Logout</a></li>
                  </ul>
                 ) :
