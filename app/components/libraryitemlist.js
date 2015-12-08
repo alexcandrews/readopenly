@@ -15,7 +15,7 @@ var LibraryItemList = React.createClass({
     },
 
     // initial state
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             // list of items "checked out"
             new_items: [],
@@ -24,17 +24,17 @@ var LibraryItemList = React.createClass({
     },
 
     // when the component loads, get the list items
-    componentDidMount: function() {
+    componentDidMount: function () {
         api.getItems(this.listSet);
     },
 
     // reload the list of items
-    reload: function() {
+    reload: function () {
         api.getItems(this.listSet);
     },
 
     // callback for getting the list of items, sets the list state
-    listSet: function(status, data) {
+    listSet: function (status, data) {
         if (status) {
             // set the state for the list of items
             this.setState({
@@ -47,8 +47,8 @@ var LibraryItemList = React.createClass({
     },
 
     // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
-    render: function() {
-        var createItem = function(item) {
+    render: function () {
+        var createItem = function (item) {
             return (
                 <div>
                     <li><a href={item}>{item}</a>
@@ -61,17 +61,17 @@ var LibraryItemList = React.createClass({
         };
         return <ul>{this.props.new_items.map(createItem)}</ul>;
         /*
-        var name = auth.getName();
+         var name = auth.getName();
 
-        return(
-            <section id="todoapp">
-                <LibraryHeader name={name} items={this.state.items} reload={this.reload} />
-                <section id="main">
-                    <ListItems items={this.state.items} reload={this.reload}/>
-                </section>
-            </section>
-        );
-        */
+         return(
+         <section id="todoapp">
+         <LibraryHeader name={name} items={this.state.items} reload={this.reload} />
+         <section id="main">
+         <ListItems items={this.state.items} reload={this.reload}/>
+         </section>
+         </section>
+         );
+         */
     }
 });
 

@@ -20,22 +20,22 @@ require("../css/app.css");
 
 var routes = (
     <Router>
-      <Route name="app" path="/" component ={App}>
-        <IndexRoute component = {HomePage} />
-        <Route name="librarypage" path="/librarypage" component={LibraryPage} />
-        <Route name="submitresourcepage" path="/submitresourcepage" component={SubmitResourcePage} />
-        <Route name="list" path="/list" component={List} />
-        <Route name="libraryitemlist" path="/libraryitemlist" component={LibraryItemList} />
-        <Route name="login" path="/login" component={Login} />
-        <Route name="register" path="/register" component={Register} />
-      </Route>
+        <Route name="app" path="/" component={App}>
+            <IndexRoute component={HomePage}/>
+            <Route name="librarypage" path="/librarypage" component={LibraryPage}/>
+            <Route name="submitresourcepage" path="/submitresourcepage" component={SubmitResourcePage}/>
+            <Route name="list" path="/list" component={List}/>
+            <Route name="libraryitemlist" path="/libraryitemlist" component={LibraryItemList}/>
+            <Route name="login" path="/login" component={Login}/>
+            <Route name="register" path="/register" component={Register}/>
+        </Route>
     </Router>
 );
 
 ReactDOM.render(routes, document.getElementById('content'));
 
 /*
-Code i removed:
+ Code i removed:
  <Route name="active" path="/list/active" component={LibraryItemList} />
  <Route name="completed" path="/list/completed" component={LibraryItemList} />
  */

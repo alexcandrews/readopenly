@@ -5,13 +5,13 @@ var SearchBar = require("./searchbar.js");
 var Link = ReactRouter.Link;
 
 var HomePage = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <SearchBar />
-      </div>
-    );
-  }
+    render: function () {
+        return (
+            <div>
+                <SearchBar />
+            </div>
+        );
+    }
 });
 
 module.exports = HomePage;
