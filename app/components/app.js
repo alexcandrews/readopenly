@@ -61,7 +61,7 @@ var App = React.createClass({
                                 (
                                     <div>
                                         <ul className="nav navbar-nav navbar-right">
-                                            <li><a href="#/loginorregisterpage">Login|Register</a></li>
+                                            <li><a href="#/loginorregisterpage">Login</a></li>
                                         </ul>
                                     </div>
                                 )
