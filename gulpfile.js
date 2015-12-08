@@ -1,17 +1,19 @@
 var gulp = require('gulp');
+//var bg = require("gulp-bg");
 var ghPages = require('gulp-gh-pages');
 var webpack = require('webpack-stream');
 
-gulp.task('compile', function () {
+//gulp.task("server", bg("node", "server.js"));
+
+gulp.task('webpack', function () {
     return gulp.src('./app/components/main.js')
         .pipe(webpack(require('./webpack.config.js')))
-        // .pipe(webpack())
         .pipe(gulp.dest('public/'));
 });
 
-gulp.task('deploy', ['compile'], function () {
+gulp.task('deploy', function () {
     return gulp.src('./public/**/*')
         .pipe(ghPages());
 });
 
-gulp.task('default', ['compile']);
+gulp.task('default', ['webpack']);
