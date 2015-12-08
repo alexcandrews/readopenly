@@ -56,15 +56,15 @@ module.exports = {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "url?name=assets/[name].[ext]&limit=10000&mimetype=image/svg+xml"
             },
-            {
+            {   // TODO: this might need to be images instead of assets
                 test: /\.png(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "url?name=assets/[name].[ext]&limit=10000&mimetype=image/png"
             },
-            {
+            {   // TODO: this might need to be images instead of assets
                 test: /\.jp(e)?g(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "url?name=assets/[name].[ext]&limit=10000&mimetype=image/jpeg"
             },
-            {
+            {   // TODO: this might need to be images instead of assets
                 test: /\.tiff(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "url?name=assets/[name].[ext]&limit=10000&mimetype=image/tiff"
             }
