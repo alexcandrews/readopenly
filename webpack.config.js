@@ -3,6 +3,7 @@ var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 
 module.exports = {
     context: __dirname + "/app",
+    watch: true,
     entry: {
         javascript: "./components/main.js",
         html: "./index.html",
