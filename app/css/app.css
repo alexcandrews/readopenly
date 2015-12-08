@@ -30,12 +30,40 @@ html {
     margin: auto;
 }
 
-.login-column {
-    width: 33%;
+.or-divide {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
 }
-.register-column {
-    width: 33%;
+
+.or-divide > span {
+    position: relative;
+    display: inline-block;
 }
+
+.or-divide > span:before,
+.or-divide > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: black;
+}
+
+.or-divide > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.or-divide > span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+
+
 
 /* .container { */
     /* max-width: 960px; */

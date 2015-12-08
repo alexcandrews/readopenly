@@ -10,6 +10,9 @@ var SearchBar = React.createClass({
                 <div className="center-content">
                     <Login />
                 </div>
+                <div className="or-divide">
+                    <span>OR</span>
+                </div>
                 <div className="center-content">
                     <Register />
                 </div>
