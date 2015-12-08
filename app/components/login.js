@@ -42,7 +42,7 @@ var Login = React.createClass({
     // show the login form
     render: function () {
         return (
-            <div className="center-content">
+            <div>
                 <h2>Login</h2>
                 <form className="form" onSubmit={this.login}>
                     <div className="form-group">

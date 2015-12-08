@@ -7,10 +7,10 @@ var SearchBar = React.createClass({
     render: function () {
         return (
             <div>
-                <div className="login-column col-md-4">
+                <div className="center-content">
                     <Login />
                 </div>
-                <div className="register-column col-md-4">
+                <div className="center-content">
                     <Register />
                 </div>
             </div>
