@@ -1301,6 +1301,7 @@ webpackJsonp([1],{
 	                    ),
 	                    React.createElement("input", { type: "text", className: "form-control", id: "nameOfBook", placeholder: "Book Title", ref: "nameOfBook", autoFocus: true })
 	                ),
+	                React.createElement("br", null),
 	                React.createElement(
 	                    "div",
 	                    { className: "form-group" },
