@@ -20,8 +20,8 @@ webpackJsonp([1],{
 	var Register = __webpack_require__(225);
 	var SubmitResourcePage = __webpack_require__(226);
 	
-	__webpack_require__(228);
-	__webpack_require__(237);
+	__webpack_require__(229);
+	__webpack_require__(238);
 	
 	var routes = React.createElement(
 	  Router,
@@ -1251,6 +1251,7 @@ webpackJsonp([1],{
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(159);
 	var AboutTheBook = __webpack_require__(227);
+	var AboutYou = __webpack_require__(228);
 	
 	var SubmitResourcePage = React.createClass({
 	    displayName: "SubmitResourcePage",
@@ -1259,7 +1260,8 @@ webpackJsonp([1],{
 	        return React.createElement(
 	            "div",
 	            null,
-	            React.createElement(AboutTheBook, null)
+	            React.createElement(AboutTheBook, null),
+	            React.createElement(AboutYou, null)
 	        );
 	    }
 	});
@@ -1288,7 +1290,7 @@ webpackJsonp([1],{
 	            ),
 	            React.createElement(
 	                "form",
-	                { className: "form-control" },
+	                { className: "form-inline" },
 	                React.createElement(
 	                    "div",
 	                    { className: "form-group" },
@@ -1319,13 +1321,83 @@ webpackJsonp([1],{
 /***/ },
 
 /***/ 228:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(159);
+	
+	var AboutYou = React.createClass({
+	    displayName: "AboutYou",
+	
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(
+	                "h2",
+	                null,
+	                "About You:"
+	            ),
+	            React.createElement(
+	                "form",
+	                { className: "form-inline" },
+	                React.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    React.createElement(
+	                        "label",
+	                        { "for": "name" },
+	                        "Your Name: "
+	                    ),
+	                    React.createElement("input", { type: "text", className: "form-control", id: "name", placeholder: "Jon Doe", ref: "name" })
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    React.createElement(
+	                        "label",
+	                        { "for": "email" },
+	                        "URL to Book: "
+	                    ),
+	                    React.createElement("input", { type: "text", className: "form-control", id: "email", placeholder: "youremail@email.com", ref: "email" })
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    React.createElement(
+	                        "label",
+	                        { "for": "institution" },
+	                        "Your Institution/Organization: "
+	                    ),
+	                    React.createElement("input", { type: "text", className: "form-control", id: "institution", placeholder: "?", ref: "institution" })
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    React.createElement(
+	                        "label",
+	                        { "for": "comments" },
+	                        "Additional Comments: "
+	                    ),
+	                    React.createElement("input", { type: "text", className: "form-control", id: "comments", placeholder: "Anything else about the resource?", ref: "comments" })
+	                )
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = AboutYou;
+
+/***/ },
+
+/***/ 229:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 237:
+/***/ 238:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
