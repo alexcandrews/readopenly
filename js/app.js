@@ -12,15 +12,16 @@ webpackJsonp([1],{
 	var IndexRoute = ReactRouter.IndexRoute;
 	
 	var App = __webpack_require__(210);
-	var Home = __webpack_require__(213);
+	var HomePage = __webpack_require__(213);
 	var List = __webpack_require__(215);
 	var LibraryItemList = __webpack_require__(222);
 	var LibraryPage = __webpack_require__(223);
 	var Login = __webpack_require__(224);
 	var Register = __webpack_require__(225);
+	var SubmitResourcePage = __webpack_require__(226);
 	
-	__webpack_require__(226);
-	__webpack_require__(235);
+	__webpack_require__(227);
+	__webpack_require__(236);
 	
 	var routes = React.createElement(
 	  Router,
@@ -28,10 +29,11 @@ webpackJsonp([1],{
 	  React.createElement(
 	    Route,
 	    { name: "app", path: "/", component: App },
-	    React.createElement(IndexRoute, { component: Home }),
-	    React.createElement(Route, { name: "libraryitemlist", path: "/libraryitemlist", component: LibraryItemList }),
+	    React.createElement(IndexRoute, { component: HomePage }),
 	    React.createElement(Route, { name: "librarypage", path: "/librarypage", component: LibraryPage }),
+	    React.createElement(Route, { name: "submitresourcepage", path: "/submitresourcepage", component: SubmitResourcePage }),
 	    React.createElement(Route, { name: "list", path: "/list", component: List }),
+	    React.createElement(Route, { name: "libraryitemlist", path: "/libraryitemlist", component: LibraryItemList }),
 	    React.createElement(Route, { name: "login", path: "/login", component: Login }),
 	    React.createElement(Route, { name: "register", path: "/register", component: Register })
 	  )
@@ -143,6 +145,15 @@ webpackJsonp([1],{
 	                  "a",
 	                  { href: "#/librarypage" },
 	                  "Library"
+	                )
+	              ),
+	              React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                  "a",
+	                  { href: "#/submitresourcepage" },
+	                  "Submit Resource"
 	                )
 	              ),
 	              React.createElement(
@@ -308,8 +319,8 @@ webpackJsonp([1],{
 	
 	var Link = ReactRouter.Link;
 	
-	var Home = React.createClass({
-	  displayName: "Home",
+	var HomePage = React.createClass({
+	  displayName: "HomePage",
 	
 	  render: function () {
 	    return React.createElement(
@@ -320,7 +331,7 @@ webpackJsonp([1],{
 	  }
 	});
 	
-	module.exports = Home;
+	module.exports = HomePage;
 
 /***/ },
 
@@ -1235,13 +1246,39 @@ webpackJsonp([1],{
 /***/ },
 
 /***/ 226:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(159);
+	
+	var SubmitResourcePage = React.createClass({
+	    displayName: "SubmitResourcePage",
+	
+	    render: function () {
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(
+	                "p",
+	                null,
+	                "hello world"
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = SubmitResourcePage;
+
+/***/ },
+
+/***/ 227:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 235:
+/***/ 236:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
