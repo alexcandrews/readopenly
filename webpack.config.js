@@ -35,14 +35,24 @@ module.exports = {
                 loader: "file?name=[name].[ext]",
             },
             // loader for images
+            // inline base64 URLs for <=8k images, direct URLs for the rest
             {
                 test: /\.(png|jpg|jpeg)$/,
-                loader: "file?name=[name].[ext]",
+                loader: 'url-loader?limit=8192'
             },
             // loaders for Bootstrap CSS
-            {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap")},
-            {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file?name=assets/[name].[ext]"},
-            {test: /\.(woff|woff2)$/, loader: "url?name=assets/[name].[ext]&prefix=font/&limit=5000"},
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap")
+            },
+            {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "file?name=assets/[name].[ext]"
+            },
+            {
+                test: /\.(woff|woff2)$/,
+                loader: "url?name=assets/[name].[ext]&prefix=font/&limit=5000"
+            },
             {
                 test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "url?name=assets/[name].[ext]&limit=10000&mimetype=application/octet-stream"
