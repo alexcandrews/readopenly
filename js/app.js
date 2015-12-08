@@ -1290,7 +1290,7 @@ webpackJsonp([1],{
 	            ),
 	            React.createElement(
 	                "form",
-	                { className: "form-inline" },
+	                { className: "form" },
 	                React.createElement(
 	                    "div",
 	                    { className: "form-group" },
@@ -1301,10 +1301,9 @@ webpackJsonp([1],{
 	                    ),
 	                    React.createElement("input", { type: "text", className: "form-control", id: "nameOfBook", placeholder: "Book Title", ref: "nameOfBook", autoFocus: true })
 	                ),
-	                React.createElement("br", null),
 	                React.createElement(
 	                    "div",
-	                    { className: "form-group" },
+	                    { className: "form" },
 	                    React.createElement(
 	                        "label",
 	                        { "for": "URLtoBook" },
