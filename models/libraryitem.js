@@ -3,17 +3,16 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 var findOrCreate = require('mongoose-findorcreate');
-
-//var User = require('./user.js');
+var User = require('./user.js');
 
 var libraryItemSchema = new Schema({
-    url: {type: String, index: true, unique: true},
     title: String,
+    location: String,
     description: String,
     authors: [ String ],
-    type: String,
+    category: String,
     tags: [ String ],
-    submitted: {type: ObjectId, ref: 'users'},
+    submittedby: {type: ObjectId, ref: 'users'},
     users: [ {type: ObjectId, ref: 'users'} ],
     created: {type: Date, default: Date.now}
 });

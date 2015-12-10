@@ -1,6 +1,7 @@
 var app = require('./express.js');
 var User = require('./user.js');
 var Item = require('./item.js');
+var LibraryItem = require('./libraryitem.js');
 
 // setup body parser
 var bodyParser = require('body-parser');
@@ -91,6 +92,34 @@ app.post('/api/items', function (req, res) {
                     return;
                 }
                 res.json({item: item});
+            });
+        } else {
+            res.sendStatus(403);
+        }
+    });
+});
+
+// add an item
+app.post('/api/libraryitems', function (req, res) {
+    // validate the supplied token
+    // get indexes
+    user = User.verifyToken(req.headers.authorization, function (user) {
+        if (user) {
+            // if the token is valid, create the item for the user
+            LibraryItem.create({
+                title: req.body.libraryitem.title,
+                location: req.body.libraryitem.location,
+                description: req.body.libraryitem.description,
+                authors: req.body.libraryitem.authors,
+                category: req.body.libraryitem.category,
+                tags: req.body.libraryitem.tags,
+                submittedby: user.id
+            }, function (err, libraryitem) {
+                if (err) {
+                    res.sendStatus(500);
+                    return;
+                }
+                res.json({libraryitem: libraryitem});
             });
         } else {
             res.sendStatus(403);
