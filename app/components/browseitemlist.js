@@ -18,20 +18,19 @@ var LibraryItemList = React.createClass({
     // initial state
     getInitialState: function () {
         return {
-            // list of items "checked out"
-            libraryitems: [],
-            items: []
+            // list of all library items
+            browseitems: []
         };
     },
 
     // when the component loads, get the list items
     componentDidMount: function () {
-        api.getUsersLibraryItems(this.listSet);
+        api.getAllLibraryItems(this.listSet);
     },
 
     // reload the list of items
     reload: function () {
-        api.getUsersLibraryItems(this.listSet);
+        api.getAllLibraryItems(this.listSet);
     },
 
     // callback for getting the list of items, sets the list state
@@ -39,7 +38,7 @@ var LibraryItemList = React.createClass({
         if (status) {
             // set the state for the list of items
             this.setState({
-                libraryitems: data.libraryitems
+                browseitems: data.libraryitems
             });
         } else {
             // if the API call fails, redirect to the login page
@@ -51,7 +50,7 @@ var LibraryItemList = React.createClass({
     render: function () {
         return (
             <ul id="librarylist">
-                <ListBuilder libraryitems={this.state.libraryitems} reload={this.props.reload} />
+                <ListBuilder libraryitems={this.state.browseitems} reload={this.props.reload} />
             </ul>
         );
     }

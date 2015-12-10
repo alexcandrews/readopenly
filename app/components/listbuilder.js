@@ -1,27 +1,23 @@
 var React = require("react");
 var ReactRouter = require("react-router");
+var LibraryItem = require("./libraryitem.js");
 
 var ListBuilder = React.createClass({
-    addItemToLibrary: function (event) {
-        event.preventDefault();
-        console.log("additemtolibrary");
-        return;
-    },
     render: function() {
-        var list = function(libraryitem) {
-            {console.log(libraryitem.title)}
+        var librarylist = this.props.libraryitems.map(function (libraryitem) {
             return (
-                <div className="center-content" key={libraryitem.id}>
-                    <button type="button" className="btn-block btn-primary" onClick={this.addItemToLibrary}>{libraryitem.title}</button>
-                </div>
+                <LibraryItem key={libraryitem.id} libraryitem={libraryitem} reload={this.props.reload}/>
             );
-        };
+        }.bind(this));
 
         return (
-        <ul>{this.props.libraryitems.map(list)}</ul>
+            <ul id="listbuilder">
+                {librarylist}
+            </ul>
         );
     }
 });
-
-
 module.exports = ListBuilder;
+
+
+//<ul>{this.props.libraryitems.map(list)}</ul>
