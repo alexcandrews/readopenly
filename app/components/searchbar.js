@@ -13,10 +13,8 @@ var SearchBar = React.createClass({
         var value = this.state.value;
         return (
             <div className="center-content">
-                <center>
-                    <input type="text" className="form-control" placeholder="what do you want to learn?" value={value}
-                           onChange={this.handleChange}/>
-                </center>
+                <input type="text" className="form-control" placeholder="what do you want to learn?" value={value}
+                       onChange={this.handleChange}/>
             </div>
         );
     }

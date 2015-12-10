@@ -2,15 +2,17 @@ var React = require("react");
 var ReactRouter = require("react-router");
 
 var ListBuilder = React.createClass({
-
+    addItemToLibrary: function (event) {
+        event.preventDefault();
+        console.log("additemtolibrary");
+        return;
+    },
     render: function() {
         var list = function(libraryitem) {
+            {console.log(libraryitem.title)}
             return (
                 <div className="center-content" key={libraryitem.id}>
-                    <li><a href={libraryitem.location}>{libraryitem.title}</a>
-                        <button type="button" className="btn btn-primary btn-sm">
-                        </button>
-                    </li>
+                    <button type="button" className="btn-block btn-primary" onClick={this.addItemToLibrary}>{libraryitem.title}</button>
                 </div>
             );
         };
