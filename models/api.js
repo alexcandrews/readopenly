@@ -116,13 +116,14 @@ app.post('/api/libraryitems', function (req, res) {
                 submittedby: user.id
             }, function (err, libraryitem) {
                 if (err) {
-                    res.sendStatus(500);
+                    res.sendStatus(513);
                     return;
                 }
                 res.json({libraryitem: libraryitem});
+
             });
         } else {
-            res.sendStatus(403);
+            res.sendStatus(431);
         }
     });
 });

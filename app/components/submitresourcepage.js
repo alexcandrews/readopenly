@@ -1,6 +1,7 @@
 var React = require("react");
 var ReactRouter = require("react-router");
-var api= require("./api.js");
+var api = require("./api.js");
+var ListEntry = require("./listentry.js");
 
 var SubmitPage = React.createClass({
     submitLibraryItem: function (event) {
@@ -56,6 +57,7 @@ var SubmitPage = React.createClass({
                     </div>
                 </form>
                 <button type="submit" className="btn btn-primary" onClick={this.submitLibraryItem}>Submit !</button>
+                <ListEntry />
             </div>
         );
     }

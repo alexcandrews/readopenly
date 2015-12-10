@@ -53,8 +53,6 @@ var api = {
         var url = "/api/libraryitems";
         $.ajax({
             url: url,
-            //contentType: 'application/text',
-            //data: 'test',
             contentType: 'application/json',
             data: JSON.stringify({
                 libraryitem: {
@@ -74,12 +72,32 @@ var api = {
             },
             error: function (xhr, status, err) {
                 // if there is an error, remove the login token
-               // delete localStorage.token;
+                delete localStorage.token;
                 if (cb)
                     cb(false, status);
             }
         });
 
+    },
+
+    getLibraryItems: function (cb) {
+        var url = "/api/libraryitems";
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            type: 'GET',
+            headers: {'Authorization': localStorage.token},
+            success: function (res) {
+                if (cb)
+                    cb(true, res);
+            },
+            error: function (xhr, status, err) {
+                // if there is an error, remove the login token
+                delete localStorage.token;
+                if (cb)
+                    cb(false, status);
+            }
+        });
     },
     // update an item, call the callback when complete
     updateItem: function (item, cb) {
