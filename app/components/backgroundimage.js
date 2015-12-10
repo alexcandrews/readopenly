@@ -5,7 +5,7 @@ var BackgroundImage = React.createClass({
     render: function () {
         return (
             <div className="background-image">
-                <img src={"images/galaxy.jpg"} alt="readonly"/>
+                <img className="img-responseive background-image" src="images/galaxy.jpg" alt="readonly"/>
             </div>
         );
     }

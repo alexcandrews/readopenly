@@ -18,6 +18,7 @@ var LibraryItemList = React.createClass({
     getInitialState: function () {
         return {
             // list of items "checked out"
+            libraryitems: [{resourcetitle:"money",resourcetype:"book",resourceurl:"http://galaxyquest.com"}],
             new_items: [],
             items: [],
         };
@@ -59,7 +60,16 @@ var LibraryItemList = React.createClass({
                 </div>
             );
         };
-        return <ul>{this.props.new_items.map(createItem)}</ul>;
+        //return <ul>{this.props.new_items.map(createItem)}</ul>;
+        var displayItem = function(item) {
+            return (
+                <div className="center-content">
+                    <button type="button" className="btn-block btn-default" value={this.props.title}></button>
+                </div>
+            );
+        }
+        return <p>hello</p>;
+        //return <ul>{this.props.libraryitems.map(displayItem)}</ul>;
         /*
          var name = auth.getName();
 

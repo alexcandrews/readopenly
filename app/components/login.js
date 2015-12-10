@@ -15,7 +15,6 @@ var Login = React.createClass({
             // there was an error on logging in
             error: false
         };
-
     },
 
     // handle login button submit

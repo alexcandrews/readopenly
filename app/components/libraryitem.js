@@ -7,6 +7,10 @@ var LibraryItem = React.createClass({
     // initial state
     getInitialState: function () {
         return {
+            resourcetitle: this.props.title,
+            resourcetype: this.props.resourcetype,
+            resourceurl: this.props.resourceurl,
+            
             // editing this item
             editing: false,
             // text saved before editing started
@@ -76,6 +80,18 @@ var LibraryItem = React.createClass({
         if (this.state.editing) {
             classes += ' editing';
         }
+        // So I'm pretty sure here we want to style each ITEM.
+        /*
+         return (
+            <div>
+                <button type="button" className="btn-block btn-primary">
+                {this.props.resourcetitle}
+                {this.props.resourcetype}
+                <a href={this.props.resourceurl}>{this.props.resourcetitle}</a>
+                </button>
+             </div>
+          );
+        */
         return (
             <div>
                 <li key={item.id}><a href={item}>{item}</a>
