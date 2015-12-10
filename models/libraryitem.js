@@ -5,7 +5,12 @@ var findOrCreate = require('mongoose-findorcreate');
 
 var libraryItemSchema = new Schema({
     url: {type: String, index: true, unique: true},
-    itemtype: String,
+    title: String,
+    description: String,
+    authors: [ String ],
+    type: String,
+    tags: [ String ],
+    users: [ {type: ObjectId, ref: 'users'} ],
     created: {type: Date, default: Date.now}
 });
 
