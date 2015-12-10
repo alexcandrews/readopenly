@@ -18,7 +18,7 @@ var LibraryItemList = React.createClass({
     getInitialState: function () {
         return {
             // list of items "checked out"
-            libraryitems: [{resourcetitle:"money",resourcetype:"book",resourceurl:"http://galaxyquest.com"}],
+            libraryitems: [],
             new_items: [],
             items: [],
         };
@@ -26,12 +26,12 @@ var LibraryItemList = React.createClass({
 
     // when the component loads, get the list items
     componentDidMount: function () {
-        api.getItems(this.listSet);
+        api.getLibraryItems(this.listSet);
     },
 
     // reload the list of items
     reload: function () {
-        api.getItems(this.listSet);
+        api.getLibraryItems(this.listSet);
     },
 
     // callback for getting the list of items, sets the list state
@@ -39,7 +39,7 @@ var LibraryItemList = React.createClass({
         if (status) {
             // set the state for the list of items
             this.setState({
-                items: data.items
+                libraryitems: data.items
             });
         } else {
             // if the API call fails, redirect to the login page
@@ -49,10 +49,10 @@ var LibraryItemList = React.createClass({
 
     // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
     render: function () {
-        var createItem = function (item) {
+        var createItem = function (libraryitem) {
             return (
                 <div className="center-content">
-                    <li><a href={item}>{item}</a>
+                    <li><a href={libraryitem.location}>{item.title}</a>
                         <button type="button" className="btn btn-primary btn-sm">
                             <span className="glyphicon glyphicon-plus"></span>
                         </button>
@@ -60,7 +60,18 @@ var LibraryItemList = React.createClass({
                 </div>
             );
         };
-        //return <ul>{this.props.new_items.map(createItem)}</ul>;
+
+        var list = this.state.libraryitems.map(function (item) {
+            return (
+                <p>hello world</p>
+            );
+        }.bind(this));
+        return <ul id="todo-list">
+            {list}
+            <a href="www.google.com">ITEM</a>
+        </ul>;
+        //return <ul>{this.props.libraryitems.map(createItem)}</ul>;
+        /*
         var displayItem = function(item) {
             return (
                 <div className="center-content">
@@ -69,6 +80,7 @@ var LibraryItemList = React.createClass({
             );
         }
         return <p>hello</p>;
+        */
         //return <ul>{this.props.libraryitems.map(displayItem)}</ul>;
         /*
          var name = auth.getName();
