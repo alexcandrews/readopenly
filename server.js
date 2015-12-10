@@ -11,12 +11,9 @@ var User = require('./models/user.js');
 var Item = require('./models/item.js');
 var LibraryItem = require('./models/libraryitem.js');
 
-//db.on('error', console.error.bind(console, 'connection error:'));
-//db.once('open', function (callback) {
-    // start the server
-    var server = app.listen(3000, function () {
-        var host = server.address().address;
-        var port = server.address().port;
-        console.log("Started server: http://localhost:3000");
-    });
-//});
+// start the server
+var server = app.listen(3000, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Started server: http://" + host + ":" + port);
+});
