@@ -3,11 +3,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 var findOrCreate = require('mongoose-findorcreate');
+
 var User = require('./user.js');
 
 var libraryItemSchema = new Schema({
     title: String,
-    location: String,
+    location: { type: String, index: true, unique: true },
     description: String,
     authors: [ String ],
     category: String,
