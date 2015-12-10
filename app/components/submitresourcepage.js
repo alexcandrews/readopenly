@@ -57,7 +57,6 @@ var SubmitPage = React.createClass({
                     </div>
                 </form>
                 <button type="submit" className="btn btn-primary" onClick={this.submitLibraryItem}>Submit !</button>
-                <ListEntry />
             </div>
         );
     }

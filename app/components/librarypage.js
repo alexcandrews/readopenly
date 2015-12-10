@@ -1,7 +1,7 @@
 var React = require("react");
 var ReactRouter = require("react-router");
 
-var LibraryHeader = require("./libraryheader.js");
+//var LibraryHeader = require("./libraryheader.js");
 var LibraryItemList = require("./libraryitemlist.js");
 var SearchBar = require("./searchbar.js");
 
@@ -10,8 +10,7 @@ var LibraryPage = React.createClass({
         return (
             <div>
                 <SearchBar />
-                <LibraryItemList
-                    new_items={["http://www.google.com", "http://www.facebook.com","http://www.galaxyquest.com"]}/>
+                <LibraryItemList />
             </div>
         );
     }

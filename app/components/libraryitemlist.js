@@ -3,6 +3,7 @@ var ReactRouter = require("react-router");
 
 var LibraryHeader = require("./libraryheader.js");
 var ListItems = require("./listitems.js");
+var ListBuilder = require("./listbuilder.js");
 
 var api = require("./api.js");
 var auth = require("./auth.js");
@@ -20,7 +21,7 @@ var LibraryItemList = React.createClass({
             // list of items "checked out"
             libraryitems: [],
             new_items: [],
-            items: [],
+            items: []
         };
     },
 
@@ -39,7 +40,7 @@ var LibraryItemList = React.createClass({
         if (status) {
             // set the state for the list of items
             this.setState({
-                libraryitems: data.items
+                libraryitems: data.libraryitems
             });
         } else {
             // if the API call fails, redirect to the login page
@@ -49,26 +50,24 @@ var LibraryItemList = React.createClass({
 
     // Show the list of items. This component has the following children: ListHeader, ListEntry and ListItems
     render: function () {
+        /*
         var createItem = function (libraryitem) {
             return (
                 <div className="center-content">
-                    <li><a href={libraryitem.location}>{item.title}</a>
+                    <li><a href={libraryitem.location}>{libraryitem.title}</a>
                         <button type="button" className="btn btn-primary btn-sm">
                             <span className="glyphicon glyphicon-plus"></span>
                         </button>
                     </li>
                 </div>
             );
-        };
-
-        var list = this.state.libraryitems.map(function (item) {
-            return (
-                <p>hello world</p>
-            );
-        }.bind(this));
-        return <ul id="todo-list">
-            {list}
-            <a href="www.google.com">ITEM</a>
+        }
+        */
+        return <ul id="librarylist">
+            <ListBuilder libraryitems={this.state.libraryitems} reload={this.props.reload} />
+            {
+                //this.state.libraryitems.map(createItem)
+            }
         </ul>;
         //return <ul>{this.props.libraryitems.map(createItem)}</ul>;
         /*
@@ -82,18 +81,7 @@ var LibraryItemList = React.createClass({
         return <p>hello</p>;
         */
         //return <ul>{this.props.libraryitems.map(displayItem)}</ul>;
-        /*
-         var name = auth.getName();
 
-         return(
-         <section id="todoapp">
-         <LibraryHeader name={name} items={this.state.items} reload={this.reload} />
-         <section id="main">
-         <ListItems items={this.state.items} reload={this.reload}/>
-         </section>
-         </section>
-         );
-         */
     }
 });
 

@@ -55,12 +55,14 @@ var App = React.createClass({
                                 <ul className="nav navbar-nav navbar-right">
                                     <li><a href="#/librarypage">Library</a></li>
                                     <li><a href="#/submitresourcepage">Submit a Resource</a></li>
+                                    <li><a href="#/browselibrarypage">Browse</a></li>
                                     <li><a href="#" onClick={this.logout}>Logout</a></li>
                                 </ul>
                             ) :
                                 (
                                     <div>
                                         <ul className="nav navbar-nav navbar-right">
+                                            <li><a href="#/browselibrarypage">Browse</a></li>
                                             <li><a href="#/loginorregisterpage">Login</a></li>
                                         </ul>
                                     </div>

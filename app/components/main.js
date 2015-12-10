@@ -11,6 +11,7 @@ var HomePage = require("./homepage.js");
 var LibraryItemList = require("./libraryitemlist.js");
 var SubmitResourcePage = require("./submitresourcepage");
 var LoginOrRegisterPage = require("./loginorregisterpage.js");
+var BrowseLibraryPage = require("./browselibrarypage.js");
 var List = require("./list.js");
 var LibraryPage = require("./librarypage.js");
 var Login = require("./login.js");
@@ -26,6 +27,7 @@ var routes = (
             <Route name="librarypage" path="/librarypage" component={LibraryPage}/>
             <Route name="submitresourcepage" path="/submitresourcepage" component={SubmitResourcePage}/>
             <Route name="loginorregisterpage" path="/loginorregisterpage" component={LoginOrRegisterPage}/>
+            <Route name="browselibrarypage" path="/browselibrarypage" component={BrowseLibraryPage}/>
             <Route name="list" path="/list" component={List}/>
             <Route name="libraryitemlist" path="/libraryitemlist" component={LibraryItemList}/>
             <Route name="login" path="/login" component={Login}/>
