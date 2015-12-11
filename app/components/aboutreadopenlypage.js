@@ -1,7 +1,7 @@
 var React = require("react");
 var ReactRouter = require("react-router");
 
-var AboutTheBook = React.createClass({
+var AboutReadOpenlyPage = React.createClass({
     render: function () {
         return (
             <div>
@@ -23,4 +23,4 @@ var AboutTheBook = React.createClass({
     }
 });
 
-module.exports = AboutTheBook;
+module.exports = AboutReadOpenlyPage;

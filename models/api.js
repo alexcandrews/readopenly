@@ -113,27 +113,45 @@ app.post('/api/libraryitems', function (req, res) {
                 authors: req.body.libraryitem.authors,
                 category: req.body.libraryitem.category,
                 tags: req.body.libraryitem.tags,
-                submittedby: user.id
+                submittedby: user.id,
             }, function (err, libraryitem) {
                 if (err) {
-                    res.sendStatus(513);
+                    res.sendStatus(500);
                     return;
                 }
                 res.json({libraryitem: libraryitem});
 
             });
         } else {
-            res.sendStatus(431);
+            res.sendStatus(403);
         }
     });
 });
 
+//return list of ALL library items
 app.get('/api/libraryitems', function (req, res) {
+
+    LibraryItem.find({}, function (err, libraryitems) {
+        if (err) {
+            res.sendStatus(500);
+            return;
+        }
+        // return value is the list of items as JSON
+        res.json({libraryitems: libraryitems});
+    });
+});
+
+
+//update library item to add user
+app.put('/api/addlibraryitemtouser', function (req, res) {
     // validate the supplied token
-    //user = User.verifyToken(req.headers.authorization, function (user) {
-        //if (user) {
-            // if the token is valid, find all the user's items and return them
-            LibraryItem.find({user: user.id}, function (err, libraryitems) {
+    // get indexes
+    console.log("got to model");
+    console.log("title: " + req.body.libraryitem.title);
+    user = User.verifyToken(req.headers.authorization, function (user) {
+        if (user) {
+            // if the token is valid, create the item for the user
+            LibraryItem.update( { title: req.body.libraryitem.title }, { $addToSet: { users: [ user.id ] } }, function (err, libraryitem) {
                 if (err) {
                     res.sendStatus(500);
                     return;
@@ -141,11 +159,32 @@ app.get('/api/libraryitems', function (req, res) {
                 // return value is the list of items as JSON
                 res.json({libraryitems: libraryitems});
             });
-        //} else {
-        //     res.sendStatus(403);
-        //}
-    //});
+        } else {
+            res.sendStatus(403);
+        }
+    });
 });
+
+
+app.get('/api/userslibraryitems', function (req, res) {
+    user = User.verifyToken(req.headers.authorization, function (user) {
+        if (user) {
+            // if the token is valid, find all the user's items and return them
+            console.log("user id: " + user.id);
+            LibraryItem.find({ users: user.id }, function (err, libraryitems) {
+                if (err) {
+                    res.sendStatus(500);
+                    return;
+                }
+                // return value is the list of items as JSON
+                res.json({libraryitems: libraryitems});
+            });
+        } else {
+            res.sendStatus(403);
+        }
+    });
+});
+
 
 // get an item
 app.get('/api/items/:item_id', function (req, res) {

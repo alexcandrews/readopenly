@@ -15,7 +15,7 @@ var libraryItemSchema = new Schema({
     category: String,
     tags: [ String ],
     submittedby: {type: ObjectId, ref: 'users'},
-    users: {type: ObjectId, ref: 'users'},
+    users: [ {type: ObjectId, ref: 'users'} ],
     created: {type: Date, default: Date.now}
 });
 

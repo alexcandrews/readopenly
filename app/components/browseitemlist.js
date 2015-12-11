@@ -14,7 +14,6 @@ var LibraryItemList = React.createClass({
     contextTypes: {
         location: React.PropTypes.object
     },
-
     // initial state
     getInitialState: function () {
         return {
@@ -40,6 +39,7 @@ var LibraryItemList = React.createClass({
             this.setState({
                 browseitems: data.libraryitems
             });
+            console.log(this.state.browseitems)
         } else {
             // if the API call fails, redirect to the login page
             this.context.router.transitionTo('/loginorregister');

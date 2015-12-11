@@ -49,6 +49,31 @@ var api = {
 
     },
 
+    addItemToUserLibrary: function (libraryitem, cb) {
+        var url = "/api/addlibraryitemtouser";
+        $.ajax({
+            url: url,
+            contentType: 'application/json',
+            data: JSON.stringify({
+                libraryitem: {
+                    'title': libraryitem.title
+                }
+            }),
+            type: 'POST',
+            headers: {'Authorization': localStorage.token},
+            success: function (res) {
+                if (cb)
+                    cb(true, res);
+            },
+            error: function (xhr, status, err) {
+                // if there is an error, remove the login token
+                delete localStorage.token;
+                if (cb)
+                    cb(false, status);
+            }
+        });
+    },
+
     submitLibraryItem: function (title, location, description, category, authors, tags, cb) {
         var url = "/api/libraryitems";
         $.ajax({
@@ -93,6 +118,7 @@ var api = {
             },
             error: function (xhr, status, err) {
                 // if there is an error, remove the login token
+                console.log("i think its failing");
                 delete localStorage.token;
                 if (cb)
                     cb(false, status);

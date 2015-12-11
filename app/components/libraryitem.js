@@ -5,7 +5,8 @@ var api = require("./api.js");
 var LibraryItem = React.createClass({
     addItemToLibrary: function (event) {
         event.preventDefault();
-        console.log("additemtolibrary");
+        console.log("just clicked " + this.props.libraryitem);
+        api.addItemToUserLibrary(this.props.libraryitem);
     },
     // render the Item
     render: function () {
