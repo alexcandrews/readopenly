@@ -80,27 +80,7 @@ var api = {
 
     },
 
-    //searchLibraryItems: function (cb) {
-    //    var url = "/api/libraryitems/search";
-    //    $.ajax({
-    //        url: url,
-    //        dataType: 'json',
-    //        type: 'GET',
-    //        headers: {'Authorization': localStorage.token},
-    //        success: function (res) {
-    //            if (cb)
-    //                cb(true, res);
-    //        },
-    //        error: function (xhr, status, err) {
-    //            // if there is an error, remove the login token
-    //            delete localStorage.token;
-    //            if (cb)
-    //                cb(false, status);
-    //        }
-    //    });
-    //},
-
-    getLibraryItems: function (cb) {
+    getAllLibraryItems: function (cb) {
         var url = "/api/libraryitems";
         $.ajax({
             url: url,
@@ -119,6 +99,28 @@ var api = {
             }
         });
     },
+
+    getUsersLibraryItems: function (cb) {
+        var url = "/api/userslibraryitems";
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            type: 'GET',
+            headers: {'Authorization': localStorage.token},
+            success: function (res) {
+                if (cb)
+                    cb(true, res);
+            },
+            error: function (xhr, status, err) {
+                // if there is an error, remove the login token
+                delete localStorage.token;
+                if (cb)
+                    cb(false, status);
+            }
+        });
+    },
+
+
 
     // update an item, call the callback when complete
     updateItem: function (item, cb) {

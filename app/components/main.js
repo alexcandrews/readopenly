@@ -37,9 +37,3 @@ var routes = (
 );
 
 ReactDOM.render(routes, document.getElementById('content'));
-
-/*
- Code I removed:
- <Route name="active" path="/list/active" component={LibraryItemList} />
- <Route name="completed" path="/list/completed" component={LibraryItemList} />
- */
