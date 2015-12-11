@@ -14,7 +14,7 @@ var LibraryItem = React.createClass({
             return (
                 <div key={this.props.libraryitem.id}>
                     <a href={this.props.libraryitem.location}
-                        className="btn btn-primary btn-block lib-item">
+                       className="btn btn-primary btn-block lib-item">
                         {this.props.libraryitem.title}
                     </a>
                 </div>
@@ -24,8 +24,8 @@ var LibraryItem = React.createClass({
                 <div key={this.props.libraryitem.id}>
                     <button type="button"
                             className="btn btn-primary btn-block lib-item"
-                            onClick={this.addItemToLibrary}
-                        >{this.props.libraryitem.title} [click to add to library]
+                            onClick={this.addItemToLibrary}>
+                        {this.props.libraryitem.title}
                     </button>
                 </div>
             );
