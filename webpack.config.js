@@ -7,7 +7,7 @@ module.exports = {
     entry: {
         javascript: "./components/main.js",
         html: "./index.html",
-        vendor: ["jquery", "react", "react-router", "typeahead.js", "handlebars"],
+        vendor: ["jquery", "react", "react-router", "typeahead.js", "handlebars", "react-bootstrap"],
     },
     output: {
         filename: "js/app.js",
