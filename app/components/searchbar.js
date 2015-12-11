@@ -3,6 +3,7 @@ var ReactRouter = require("react-router");
 var ReactDOM = require('react-dom');
 var $ = require("jquery");
 var Bloodhound = require("typeahead.js");
+var Handlebars = require("handlebars")
 
 var api = require("./api.js");
 
@@ -27,19 +28,32 @@ var SearchBar = React.createClass({
     },
 
     componentDidMount: function () {
-        //api.getLibraryItems(this.listSet)
-
-        //var suggestions = {
-        //    query: "",
-        //    results: api.getLibraryItems()
-        //};
-
-        //console.log(suggestions.results)
         var engine = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
+            datumTokenizer: Bloodhound.tokenizers.whitespace,
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            limit: 30,
-            remote: 'api/libraryitems'
+            limit: 10,
+            remote: {
+                url: 'api/libraryitems',
+                transform: function (response) {
+                    //console.log(response.libraryitems)
+                    return $.map(response.libraryitems, function (item) {
+                        console.log(item)
+                        console.log("title: " + item.title)
+                        return {
+                            title: item.title,
+                            location: item.location,
+                            authors: item.authors,
+                            category: item.category,
+                            tags: item.tags,
+                            submittedby: item.submittedby,
+                            users: item.users,
+                            created: item.created
+                        };
+                    });
+                },
+                rateLimitBy: 'debounce',
+                rateLimitWait: 300
+            }
         });
 
         // initialize the bloodhound suggestion engine
@@ -53,31 +67,47 @@ var SearchBar = React.createClass({
             },
             {
                 name: 'engine',
-                displayKey: 'title',
+                //displayKey: 'title',
                 source: engine.ttAdapter(),
                 templates: {
-                    suggestion: function (data) {
-                        return "<p style='padding:6px'>" + data.title + "</p>";
-                        //return template(data);
-                    }
+                    empty: [
+                        '<div class="empty-message">',
+                        'unable to find any Best Picture winners that match the current query',
+                        '</div>'
+                    ].join('\n'),
+                    suggestion: Handlebars.compile(
+                        '<div><strong>title:</strong> {{title}} <strong>url:</strong> {{location}} <strong>authors:</strong> {{authors}} <strong>tags:</strong> {{tags}} <strong>created on:</strong> {{created}}' +
+                        '<br><br></div>'
+                    )
+
                 }
+                //templates: {
+                //    suggestion: function (data) {
+                //        console.log(data)
+                //        return (
+                //            "<p style='padding:6px'>" + data + "</p>"
+                //        );
+                //
+                //        //return template(data);
+                //    }
+                //}
             });
     },
 
     // callback for getting the list of items, sets the list state
-    listSet: function (status, data) {
-        if (status) {
-            // set the state for the list of items
-            this.setState({
-                results: data.libraryitems
-            });
-        }
-        console.log(this.state.results)
-        //} else {
-        //    // if the API call fails, redirect to the login page
-        //    this.context.router.transitionTo('/login');
-        //}
-    },
+    //listSet: function (status, data) {
+    //    if (status) {
+    //        // set the state for the list of items
+    //        this.setState({
+    //            results: data.libraryitems
+    //        });
+    //    }
+    //    console.log(this.state.results)
+    //    //} else {
+    //    //    // if the API call fails, redirect to the login page
+    //    //    this.context.router.transitionTo('/login');
+    //    //}
+    //},
 
     render: function () {
         return (
