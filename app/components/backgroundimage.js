@@ -9,9 +9,6 @@ var BackgroundImage = React.createClass({
                 <div className="carousel-caption">
                     <h1>learning is free.</h1>
                 </div>
-                <div className="caption">
-                    <h1>learning is free.</h1>
-                </div>
             </div>
         );
     }
