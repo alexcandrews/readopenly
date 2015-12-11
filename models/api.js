@@ -151,7 +151,7 @@ app.put('/api/addlibraryitemtouser', function (req, res) {
     user = User.verifyToken(req.headers.authorization, function (user) {
         if (user) {
             // if the token is valid, create the item for the user
-            LibraryItem.update( { title: req.body.libraryitem.title }, { $addToSet: { users: [ user.id ] } }, function (err, libraryitem) {
+            LibraryItem.update( { title: req.body.libraryitem.title }, { users: user.id }, function (err, libraryitem) {
                 if (err) {
                     res.sendStatus(500);
                     return;
