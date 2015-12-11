@@ -8,11 +8,6 @@ var Handlebars = require("handlebars")
 var api = require("./api.js");
 
 var SearchBar = React.createClass({
-    // context so the component can access the router
-    //contextTypes: {
-    //    location: React.PropTypes.object
-    //},
-
     getInitialState: function () {
         return {
             query: '',
@@ -21,7 +16,7 @@ var SearchBar = React.createClass({
     },
 
     handleChange: function (e) {
-        console.log(e.target.value)
+        //console.log(e.target.value)
         this.setState({
             query: e.target.value,
         });
@@ -72,7 +67,7 @@ var SearchBar = React.createClass({
                 templates: {
                     empty: [
                         '<div class="empty-message">',
-                        'unable to find any Best Picture winners that match the current query',
+                        'unable to find any learning resources',
                         '</div>'
                     ].join('\n'),
                     suggestion: Handlebars.compile(
@@ -81,33 +76,8 @@ var SearchBar = React.createClass({
                     )
 
                 }
-                //templates: {
-                //    suggestion: function (data) {
-                //        console.log(data)
-                //        return (
-                //            "<p style='padding:6px'>" + data + "</p>"
-                //        );
-                //
-                //        //return template(data);
-                //    }
-                //}
             });
     },
-
-    // callback for getting the list of items, sets the list state
-    //listSet: function (status, data) {
-    //    if (status) {
-    //        // set the state for the list of items
-    //        this.setState({
-    //            results: data.libraryitems
-    //        });
-    //    }
-    //    console.log(this.state.results)
-    //    //} else {
-    //    //    // if the API call fails, redirect to the login page
-    //    //    this.context.router.transitionTo('/login');
-    //    //}
-    //},
 
     render: function () {
         return (
@@ -122,13 +92,3 @@ var SearchBar = React.createClass({
 });
 
 module.exports = SearchBar;
-
-
-//<form action="myAction" method="GET">
-//    <div className="center-content">
-//        <input name="q" id="query" ref="suggestion" className="form-control suggestions" type="text"
-//               placeholder="what do you want to learn?"
-//               value={this.state.query}
-//               onChange={this.handleChange} onBlur={this.handleChange}/>
-//    </div>
-//</form>
