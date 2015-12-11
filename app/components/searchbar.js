@@ -27,13 +27,20 @@ var SearchBar = React.createClass({
             datumTokenizer: Bloodhound.tokenizers.whitespace,
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             limit: 10,
+            prefetch: 'api/libraryitems',
             remote: {
                 url: 'api/libraryitems',
                 transform: function (response) {
                     //console.log(response.libraryitems)
                     return $.map(response.libraryitems, function (item) {
-                        console.log(item)
                         console.log("title: " + item.title)
+                        console.log("description: " + item.description)
+                        console.log("authors: " + item.authors)
+                        console.log("category: " + item.category)
+                        console.log("tags: " + item.tags)
+                        console.log("submittedby: " + item.submittedby)
+                        console.log("users: " + item.users)
+                        console.log("created: " + item.created)
                         return {
                             title: item.title,
                             location: item.location,
@@ -46,15 +53,17 @@ var SearchBar = React.createClass({
                         };
                     });
                 },
-                rateLimitBy: 'debounce',
-                rateLimitWait: 300
+                //rateLimitBy: 'debounce',
+                //rateLimitWait: 300
             }
         });
 
         // initialize the bloodhound suggestion engine
-        engine.initialize();
+        var promise = engine.initialize();
 
-        //var template = _.template('<span class="name"><%= name %></span>');
+        promise
+            .done(function() { console.log('ready to go!'); })
+            .fail(function() { console.log('err, something went wrong :('); });
 
         $(ReactDOM.findDOMNode(this.refs.suggestion)).typeahead({
                 hint: true,
@@ -68,7 +77,7 @@ var SearchBar = React.createClass({
                     empty: [
                         '<div class="empty-message">',
                         'unable to find any learning resources',
-                        '</div>'
+                        '</div>',
                     ].join('\n'),
                     suggestion: Handlebars.compile(
                         '<div><strong>title:</strong> {{title}} <strong>url:</strong> {{location}} <strong>authors:</strong> {{authors}} <strong>tags:</strong> {{tags}}' +
