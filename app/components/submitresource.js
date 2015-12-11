@@ -39,7 +39,7 @@ var SubmitResource = React.createClass({
                             <input type="text" className="form-control" id="title" placeholder="title" ref="title"/>
                         </div>
                         <div className="form-group">
-                            <input type="text" className="form-control" id="location" placeholder="http://link-to-.com"
+                            <input type="url" className="form-control" id="location" placeholder="http://link-to-.com"
                                    ref="location"/>
                         </div>
                         <div className="form-group">
