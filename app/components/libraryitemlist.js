@@ -50,7 +50,7 @@ var LibraryItemList = React.createClass({
     render: function () {
         return (
             <ul id="librarylist">
-                <ListBuilder libraryitems={this.state.libraryitems} reload={this.props.reload} />
+                <ListBuilder libraryitems={this.state.libraryitems} page={"library"} reload={this.props.reload} />
             </ul>
         );
     }
