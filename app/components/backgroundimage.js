@@ -5,7 +5,7 @@ var BackgroundImage = React.createClass({
     render: function () {
         return (
             <div className="background-image">
-                <img className="img-responseive background-image" src="images/background.jpg" alt="readonly"/>
+                <img className="img-responsive background-image" src="images/background.jpg" alt="readonly"/>
                 <div className="carousel-caption">
                     <h1>learning is free.</h1>
                 </div>
