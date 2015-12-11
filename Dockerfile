@@ -1,7 +1,7 @@
 FROM ubuntu:15.10
 
 RUN apt-get update 
-RUN apt-get install -y build-essential git python mongodb nodejs node-express fish
+RUN apt-get install -y build-essential git python mongodb-server mongodb-clients nodejs node-express fish
 RUN service mongod start
 
 RUN mkdir -p /data/db
