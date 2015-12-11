@@ -70,7 +70,12 @@ html {
     width: 100%;
 }
 
-
+.caption {
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    width: 100%;
+}
 
 
 /* .container { */
