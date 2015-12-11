@@ -3,7 +3,7 @@ var ReactRouter = require("react-router");
 var ReactDOM = require('react-dom');
 var $ = require("jquery");
 var Bloodhound = require("typeahead.js");
-var Handlebars = require("handlebars")
+var Handlebars = require("handlebars");
 
 var api = require("./api.js");
 
@@ -16,9 +16,8 @@ var SearchBar = React.createClass({
     },
 
     handleChange: function (e) {
-        //console.log(e.target.value)
         this.setState({
-            query: e.target.value,
+            query: e.target.value
         });
     },
 
@@ -31,16 +30,15 @@ var SearchBar = React.createClass({
             remote: {
                 url: 'api/libraryitems',
                 transform: function (response) {
-                    //console.log(response.libraryitems)
                     return $.map(response.libraryitems, function (item) {
-                        console.log("title: " + item.title)
-                        console.log("description: " + item.description)
-                        console.log("authors: " + item.authors)
-                        console.log("category: " + item.category)
-                        console.log("tags: " + item.tags)
-                        console.log("submittedby: " + item.submittedby)
-                        console.log("users: " + item.users)
-                        console.log("created: " + item.created)
+                        console.log("title: " + item.title);
+                        console.log("description: " + item.description);
+                        console.log("authors: " + item.authors);
+                        console.log("category: " + item.category);
+                        console.log("tags: " + item.tags);
+                        console.log("submittedby: " + item.submittedby);
+                        console.log("users: " + item.users);
+                        console.log("created: " + item.created);
                         return {
                             title: item.title,
                             location: item.location,
@@ -52,22 +50,20 @@ var SearchBar = React.createClass({
                             created: item.created
                         };
                     });
-                },
-                //rateLimitBy: 'debounce',
-                //rateLimitWait: 300
+                }
             }
         });
 
         // initialize the bloodhound suggestion engine
-        var promise = engine.initialize();
+        engine.initialize();
 
-        promise
-            .done(function() { console.log('ready to go!'); })
-            .fail(function() { console.log('err, something went wrong :('); });
+        //promise
+        //    .done(function() { console.log('ready to go!'); })
+        //    .fail(function() { console.log('err, something went wrong :('); });
 
         $(ReactDOM.findDOMNode(this.refs.suggestion)).typeahead({
                 hint: true,
-                highlight: true,
+                highlight: true
             },
             {
                 name: 'engine',
@@ -77,7 +73,7 @@ var SearchBar = React.createClass({
                     empty: [
                         '<div class="empty-message">',
                         'unable to find any learning resources',
-                        '</div>',
+                        '</div>'
                     ].join('\n'),
                     suggestion: Handlebars.compile(
                         '<div><strong>title:</strong> {{title}} <strong>url:</strong> {{location}} <strong>authors:</strong> {{authors}} <strong>tags:</strong> {{tags}}' +
@@ -90,8 +86,8 @@ var SearchBar = React.createClass({
 
     render: function () {
         return (
-            <div className="center-content">
-                <input name="q" id="query" ref="suggestion" className="form-control suggestions" type="text"
+            <div>
+                <input name="q" id="query" ref="suggestion" className="form-control suggestions search-bar" type="text"
                        placeholder="what do you want to learn?"
                        value={this.state.query}
                        onChange={this.handleChange} onBlur={this.handleChange}/>

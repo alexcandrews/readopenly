@@ -19,7 +19,8 @@ var LibraryItemList = React.createClass({
         return {
             // list of items "checked out"
             libraryitems: [],
-            items: []
+            items: [],
+            page: "library"
         };
     },
 
@@ -38,7 +39,8 @@ var LibraryItemList = React.createClass({
         if (status) {
             // set the state for the list of items
             this.setState({
-                libraryitems: data.libraryitems
+                libraryitems: data.libraryitems,
+                page: "library"
             });
         } else {
             // if the API call fails, redirect to the login page
@@ -50,7 +52,7 @@ var LibraryItemList = React.createClass({
     render: function () {
         return (
             <ul id="librarylist">
-                <ListBuilder libraryitems={this.state.libraryitems} page={"library"} reload={this.props.reload} />
+                <ListBuilder page={this.state.page} libraryitems={this.state.libraryitems}  reload={this.props.reload} />
             </ul>
         );
     }

@@ -77,6 +77,25 @@ html {
     width: 100%;
 }
 
+.search-bar {
+    margin: 10% 40% 10% 174%;
+    height: 40px;
+    width: 267%;
+}
+
+.lib-item {
+    width: 50%;
+    margin: auto auto 0.5%;
+    border-radius: 5%;
+    background-color: white;
+    color: gray;
+    border-color: lightgray;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: lightgray;
+    border-color: lightgray;
+}
 
 /* .container { */
     /* max-width: 960px; */

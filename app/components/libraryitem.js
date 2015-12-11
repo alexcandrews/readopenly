@@ -5,19 +5,16 @@ var api = require("./api.js");
 var LibraryItem = React.createClass({
     addItemToLibrary: function (event) {
         event.preventDefault();
-        console.log("just clicked " + this.props.libraryitem);
         api.addItemToUserLibrary(this.props.libraryitem);
     },
     // render the Item
     render: function () {
-        //user = User.verifyToken(req.headers.authorization, function (user) {
-         //   if (user) {
-        console.log("page " + this.props.page);
-        if (this.props.page == "library") {
+        var pathname = window.location.href;
+        if (!pathname.includes('browse')) {
             return (
                 <div key={this.props.libraryitem.id}>
-                    <a href={this.props.libraryitem.link}
-                        className="btn btn-primary btn-block">
+                    <a href={this.props.libraryitem.location}
+                        className="btn btn-primary btn-block lib-item">
                         {this.props.libraryitem.title}
                     </a>
                 </div>
@@ -26,10 +23,9 @@ var LibraryItem = React.createClass({
             return (
                 <div key={this.props.libraryitem.id}>
                     <button type="button"
-                            className="btn btn-primary btn-block"
+                            className="btn btn-primary btn-block lib-item"
                             onClick={this.addItemToLibrary}
-                        >{this.props.libraryitem.title}
-                        [click to add to library]
+                        >{this.props.libraryitem.title} [click to add to library]
                     </button>
                 </div>
             );
