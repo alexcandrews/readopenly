@@ -12,6 +12,7 @@ var LibraryItem = React.createClass({
     render: function () {
         //user = User.verifyToken(req.headers.authorization, function (user) {
          //   if (user) {
+        console.log("page " + this.props.page);
         if (this.props.page == "library") {
             return (
                 <div key={this.props.libraryitem.id}>
@@ -33,17 +34,6 @@ var LibraryItem = React.createClass({
                 </div>
             );
         }
-            //} else {
-            //    return (
-            //        <div key={this.props.libraryitem.id}>
-            //            });
-            //            <button type="button"
-            //                    className="btn btn-primary btn-block">
-            //                {this.props.libraryitem.title}
-            //            </button>
-            //        </div>
-            //    );
-            //}
 
     }
 });
