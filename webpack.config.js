@@ -7,15 +7,15 @@ module.exports = {
     entry: {
         javascript: "./components/main.js",
         html: "./index.html",
-        vendor: ["jquery", "react", "react-router", "typeahead.js", "handlebars"]
+        vendor: ["jquery", "react", "react-router", "typeahead.js", "handlebars", "react-bootstrap"],
     },
     output: {
         filename: "js/app.js",
-        path: __dirname + "/public"
+        path: __dirname + "/public",
     },
     plugins: [
         new ExtractTextPlugin("./css/styles.css"),
-        new CommonsChunkPlugin("vendor", "./js/vendor.js", Infinity)
+        new CommonsChunkPlugin("vendor", "./js/vendor.js", Infinity),
     ],
     devtool: 'source-map',
     module: {
@@ -32,7 +32,7 @@ module.exports = {
             // loader for HTML
             {
                 test: /\.html$/,
-                loader: "file?name=[name].[ext]"
+                loader: "file?name=[name].[ext]",
             },
             // loaders for Bootstrap CSS
             {

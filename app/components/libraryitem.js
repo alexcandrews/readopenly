@@ -1,8 +1,19 @@
 var React = require("react");
 var api = require("./api.js");
+var Modal = require("react-bootstrap");
 
 // Item shown in the todo list
-var LibraryItem = React.createClass({
+const LibraryItem = React.createClass({
+    //getInitialState () {
+    //    return { showModal: false };
+    //},
+    //close() {
+    //    this.setState({showModal: false});
+    //},
+    //open() {
+    //    this.setState({showModal: true});
+    //},
+
     addItemToLibrary: function (event) {
         event.preventDefault();
         api.addItemToUserLibrary(this.props.libraryitem);
@@ -36,3 +47,19 @@ var LibraryItem = React.createClass({
 
 
 module.exports = LibraryItem;
+
+/*
+ <div className="static-modal">
+ <Modal show={this.state.showModal} onHide={this.close}>
+ <Modal.Header closeButton>
+ <Modal.Title>Modal Heading</Modal.Title>
+ </Modal.Header>
+ <Modal.Body>
+ <p>You've added {this.props.libraryitem.title} to your library!</p>
+ </Modal.Body>
+ <Modal.Footer>
+ <Button onClick={this.close}>Close</Button>
+ </Modal.Footer>
+ </Modal>
+ </div>
+ */
