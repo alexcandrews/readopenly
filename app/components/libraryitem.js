@@ -13,7 +13,7 @@ var LibraryItem = React.createClass({
         return (
             <div key={this.props.libraryitem.id}>
                 <button type="button"
-                    className="btn-block btn-primary"
+                    className="btn btn-primary btn-block"
                     onClick={this.addItemToLibrary}>{this.props.libraryitem.title}
                 </button>
             </div>
