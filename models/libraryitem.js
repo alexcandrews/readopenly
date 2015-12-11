@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 var findOrCreate = require('mongoose-findorcreate');
-var textSearch = require('mongoose-text-search');
+//var textSearch = require('mongoose-text-search');
 
 var User = require('./user.js');
 
@@ -15,7 +15,7 @@ var libraryItemSchema = new Schema({
     category: String,
     tags: [ String ],
     submittedby: {type: ObjectId, ref: 'users'},
-    users: [ {type: ObjectId, ref: 'users'} ],
+    users: {type: ObjectId, ref: 'users'},
     created: {type: Date, default: Date.now}
 });
 
