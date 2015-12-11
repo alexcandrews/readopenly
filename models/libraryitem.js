@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 var findOrCreate = require('mongoose-findorcreate');
+var textSearch = require('mongoose-text-search');
 
 var User = require('./user.js');
 
@@ -23,8 +24,10 @@ libraryItemSchema.set('toJSON', {
     virtuals: true
 });
 
-// add findorCreate
+// add findorCreate plugin
 libraryItemSchema.plugin(findOrCreate);
+// add textSearch plugin
+//libraryItemSchema.plugin(textSearch);
 
 // create library item
 var LibraryItem = mongoose.model('libraryitem', libraryItemSchema);

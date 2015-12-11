@@ -6,7 +6,6 @@ var ListItems = require("./listitems.js");
 var ListBuilder = require("./listbuilder.js");
 
 var api = require("./api.js");
-var auth = require("./auth.js");
 
 // Library list page, show items checked out
 var LibraryItemList = React.createClass({
@@ -20,7 +19,6 @@ var LibraryItemList = React.createClass({
         return {
             // list of items "checked out"
             libraryitems: [],
-            new_items: [],
             items: []
         };
     },

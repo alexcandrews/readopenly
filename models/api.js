@@ -128,23 +128,27 @@ app.post('/api/libraryitems', function (req, res) {
     });
 });
 
+
 app.get('/api/libraryitems', function (req, res) {
     // validate the supplied token
-    user = User.verifyToken(req.headers.authorization, function (user) {
-        if (user) {
-            // if the token is valid, find all the user's items and return them
+    //user = User.verifyToken(req.headers.authorization, function (user) {
+    //    if (user) {
             LibraryItem.find({}, function (err, libraryitems) {
                 if (err) {
+                    console.log("FAIL")
                     res.sendStatus(500);
                     return;
                 }
                 // return value is the list of items as JSON
                 res.json({libraryitems: libraryitems});
+                console.log(res)
             });
-        } else {
-            res.sendStatus(403);
-        }
-    });
+    //    } else {
+    //        console.log("OOPS")
+    //        //res.sendStatus(403);
+    //        res.json({libraryitems: libraryitems});
+    //    }
+    //});
 });
 
 
