@@ -147,25 +147,6 @@ app.get('/api/libraryitems', function (req, res) {
     //});
 });
 
-app.get('/api/userslibraryitems', function (req, res) {
-    user = User.verifyToken(req.headers.authorization, function (user) {
-        if (user) {
-            // if the token is valid, find all the user's items and return them
-            LibraryItem.find({}, function (err, libraryitems) {
-                if (err) {
-                    res.sendStatus(500);
-                    return;
-                }
-                // return value is the list of items as JSON
-                res.json({libraryitems: libraryitems});
-            });
-        } else {
-            res.sendStatus(403);
-        }
-    });
-});
-
-
 // get an item
 app.get('/api/items/:item_id', function (req, res) {
     // validate the supplied token
