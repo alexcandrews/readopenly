@@ -1,9 +1,10 @@
 var React = require("react");
 var api = require("./api.js");
-var Modal = require("react-bootstrap");
+
 
 // Item shown in the todo list
-const LibraryItem = React.createClass({
+var LibraryItem = React.createClass({
+
     //getInitialState () {
     //    return { showModal: false };
     //},
@@ -15,11 +16,13 @@ const LibraryItem = React.createClass({
     //},
 
     addItemToLibrary: function (event) {
+        //this.open();
         event.preventDefault();
         api.addItemToUserLibrary(this.props.libraryitem);
     },
     // render the Item
     render: function () {
+        //var Modal = ReactBootstrap.Modal;
         var pathname = window.location.href;
         if (!pathname.includes('browse')) {
             return (
