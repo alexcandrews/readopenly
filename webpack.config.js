@@ -7,15 +7,15 @@ module.exports = {
     entry: {
         javascript: "./components/main.js",
         html: "./index.html",
-        vendor: ["jquery", "react", "react-router", "typeahead.js", "handlebars"],
+        vendor: ["jquery", "react", "react-router", "typeahead.js", "handlebars"]
     },
     output: {
         filename: "js/app.js",
-        path: __dirname + "/public",
+        path: __dirname + "/public"
     },
     plugins: [
         new ExtractTextPlugin("./css/styles.css"),
-        new CommonsChunkPlugin("vendor", "./js/vendor.js", Infinity),
+        new CommonsChunkPlugin("vendor", "./js/vendor.js", Infinity)
     ],
     devtool: 'source-map',
     module: {
@@ -29,17 +29,10 @@ module.exports = {
                     presets: ['react']
                 }
             },
-            //{
-            //    test: /\.(jpe?g|png|gif|svg)$/i,
-            //    loaders: [
-            //        'file?hash=sha512&digest=hex&name=[hash].[ext]',
-            //        'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
-            //    ]
-            //},
             // loader for HTML
             {
                 test: /\.html$/,
-                loader: "file?name=[name].[ext]",
+                loader: "file?name=[name].[ext]"
             },
             // loaders for Bootstrap CSS
             {
@@ -64,18 +57,18 @@ module.exports = {
             },
             //{ test: /\.jpg$/, loader: "url-loader?mimetype=image/jpg" },
             //{ test: /\.png$/, loader: "url-loader?mimetype=image/png" },
-            //{   // TODO: this might need to be images instead of assets
-            //    test: /\.png(\?v=\d+\.\d+\.\d+)?$/,
-            //    loader: "url?name=assets/[name].[ext]&limit=10000&mimetype=image/png"
-            //},
-            //{   // TODO: this might need to be images instead of assets
-            //    test: /\.jp(e)?g(\?v=\d+\.\d+\.\d+)?$/,
-            //    loader: "url?name=assets/[name].[ext]&limit=10000&mimetype=image/jpeg"
-            //},
-            //{   // TODO: this might need to be images instead of assets
-            //    test: /\.tiff(\?v=\d+\.\d+\.\d+)?$/,
-            //    loader: "url?name=assets/[name].[ext]&limit=10000&mimetype=image/tiff"
-            //}
-        ],
-    },
-}
+            {
+                test: /\.png(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url?name=images/[name].[ext]&limit=10000&mimetype=image/png"
+            },
+            {
+                test: /\.jp(e)?g(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url?name=images/[name].[ext]&limit=10000&mimetype=image/jpeg"
+            },
+            {
+                test: /\.tiff(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url?name=images/[name].[ext]&limit=10000&mimetype=image/tiff"
+            }
+        ]
+    }
+};
