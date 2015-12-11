@@ -32,13 +32,13 @@ var SearchBar = React.createClass({
                 transform: function (response) {
                     return $.map(response.libraryitems, function (item) {
                         console.log("title: " + item.title);
-                        console.log("description: " + item.description);
-                        console.log("authors: " + item.authors);
-                        console.log("category: " + item.category);
-                        console.log("tags: " + item.tags);
-                        console.log("submittedby: " + item.submittedby);
-                        console.log("users: " + item.users);
-                        console.log("created: " + item.created);
+                        //console.log("description: " + item.description);
+                        //console.log("authors: " + item.authors);
+                        //console.log("category: " + item.category);
+                        //console.log("tags: " + item.tags);
+                        //console.log("submittedby: " + item.submittedby);
+                        //console.log("users: " + item.users);
+                        //console.log("created: " + item.created);
                         return {
                             title: item.title,
                             location: item.location,
@@ -76,8 +76,7 @@ var SearchBar = React.createClass({
                         '</div>'
                     ].join('\n'),
                     suggestion: Handlebars.compile(
-                        '<div><strong>title:</strong> {{title}} <strong>url:</strong> {{location}} <strong>authors:</strong> {{authors}} <strong>tags:</strong> {{tags}}' +
-                        '<br><br></div>'
+                        '<div class="search-bar">{{title}}<br>{{location}}<br>{{authors}}<br>{{tags}}<br><br></div>'
                     )
 
                 }
