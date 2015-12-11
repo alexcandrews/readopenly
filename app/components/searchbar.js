@@ -71,7 +71,7 @@ var SearchBar = React.createClass({
                         '</div>'
                     ].join('\n'),
                     suggestion: Handlebars.compile(
-                        '<div><strong>title:</strong> {{title}} <strong>url:</strong> {{location}} <strong>authors:</strong> {{authors}} <strong>tags:</strong> {{tags}} <strong>created on:</strong> {{created}}' +
+                        '<div><strong>title:</strong> {{title}} <strong>url:</strong> {{location}} <strong>authors:</strong> {{authors}} <strong>tags:</strong> {{tags}}' +
                         '<br><br></div>'
                     )
 
