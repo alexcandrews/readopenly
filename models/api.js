@@ -156,8 +156,8 @@ app.put('/api/addlibraryitemtouser', function (req, res) {
                     res.sendStatus(500);
                     return;
                 }
-                // return value is the list of items as JSON
-                res.json({libraryitems: libraryitems});
+                // TODO I don't know what a put returns
+                res.json({});
             });
         } else {
             res.sendStatus(403);
