@@ -11,7 +11,7 @@ var ListBuilder = React.createClass({
         }.bind(this));
 
         return (
-            <ul id="listbuilder">
+            <ul id="center">
                 {librarylist}
             </ul>
         );

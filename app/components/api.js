@@ -51,6 +51,7 @@ var api = {
 
     addItemToUserLibrary: function (libraryitem, cb) {
         var url = "/api/addlibraryitemtouser";
+        console.log("library item: " + libraryitem.title);
         $.ajax({
             url: url,
             contentType: 'application/json',
@@ -59,7 +60,7 @@ var api = {
                     'title': libraryitem.title
                 }
             }),
-            type: 'POST',
+            type: 'PUT',
             headers: {'Authorization': localStorage.token},
             success: function (res) {
                 if (cb)
