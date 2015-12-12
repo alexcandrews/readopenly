@@ -13,8 +13,11 @@ var BackgroundImage = React.createClass({
 
 module.exports = BackgroundImage;
 
+// Little tag line at the end. Except it was ugly.
 /*
+
  <div className="carousel-caption">
  <h1>learning is free.</h1>
  </div>
+
  */
