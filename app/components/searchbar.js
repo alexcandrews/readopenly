@@ -25,7 +25,7 @@ var SearchBar = React.createClass({
         var engine = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.whitespace,
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            limit: 10,
+            limit: 3,
             prefetch: 'api/libraryitems',
             remote: {
                 url: 'api/libraryitems',
@@ -45,9 +45,9 @@ var SearchBar = React.createClass({
                             authors: item.authors,
                             category: item.category,
                             tags: item.tags,
-                            submittedby: item.submittedby,
-                            users: item.users,
-                            created: item.created
+                            // submittedby: item.submittedby,
+                            // users: item.users,
+                            // created: item.created
                         };
                     });
                 }
@@ -67,7 +67,7 @@ var SearchBar = React.createClass({
             },
             {
                 name: 'engine',
-                //displayKey: 'title',
+                displayKey: 'location',
                 source: engine.ttAdapter(),
                 templates: {
                     empty: [
@@ -76,7 +76,7 @@ var SearchBar = React.createClass({
                         '</div>'
                     ].join('\n'),
                     suggestion: Handlebars.compile(
-                        '<div class="search-bar">{{title}}<br>{{location}}<br>{{authors}}<br>{{tags}}<br><br></div>'
+                        '<div class="btn-default">{{title}} - {{authors}}<br></div>'
                     )
 
                 }
